@@ -1,0 +1,47 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  EnabledByDefault: true
+  TargetRubyVersion: 2.7.0
+  Exclude:
+    - 'config/**/*'
+    - 'spec/factories/**/*'
+    - 'app/models/*'
+    - 'spec/**/*'
+    - 'lib/tasks/**/*'
+    - 'vendor/**/*'
+    - 'app/views/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'csv/**/*'
+    - 'slate/**/*'
+    - 'node_modules/**/*'
+
+Lint/ConstantResolution:
+  Enabled: false
+Style/Encoding:
+  Enabled: false
+Style/LambdaCall:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/DocumentationMethod:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/Copyright:
+  Enabled: false
+Bundler/GemComment:
+  Enabled: false
+
+
+
+Layout/LineLength:
+  Max: 120
+Metrics/MethodLength:
+  Max: 30
+
