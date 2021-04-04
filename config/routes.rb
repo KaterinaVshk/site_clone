@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'signup', to: 'users#new'
+  post 'signup', to: 'users#create'
   root 'home_page#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
