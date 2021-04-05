@@ -1,12 +1,8 @@
-
-
-<!--Top-->
 <header class="g-top">
     <div class="b-top-menu">
     <div class="g-top-i">
     <nav class="b-top-navigation">
 
-    <!--Main-navigation-->
     <ul class="b-main-navigation">
         <li class="b-main-navigation__item">
             <a href="" class="b-main-navigation__advert b-main-navigation__advert_primary">
@@ -64,9 +60,7 @@
         </li>
 
     </ul>
-        <!--Clover-->
         <a href="https://clever.onliner.by/?utm_source=onliner&utm_medium=navigation&utm_campaign=clever" target="_blank" class="b-top-navigation-clover">Onliner Клевер</a>
-        <!--/Clover-->
 
         <div class="b-top-navigation-age">18+</div>
     </nav>
@@ -96,10 +90,18 @@
             </div>
 
 
-            <div id="userbar" class="b-top-profile js-userbar">
+
+            <div id="userbar" class="b-top-profile">
+                <% if user_logged_in? %>
+                    <div class="auth-bar auth-bar--top" data-bind="visible: false" style="">
+                        <a href="<%=logout_path%>" class="auth-bar__item auth-bar__item--text"  style="height: 40px">Выход</a>
+                    </div>
                
-            <div class="auth-bar auth-bar--top" data-bind="visible: false" style="">
-                <a href="" class="auth-bar__item auth-bar__item--text"  style="height: 40px">Вход</a>
+                <% else %>
+                    <div class="auth-bar auth-bar--top" data-bind="visible: false" style="">
+                        <a href="<%=login_path%>" class="auth-bar__item auth-bar__item--text"  style="height: 40px">Вход</a>
+                    </div>
+                <% end %>
             </div>
         
         </div>

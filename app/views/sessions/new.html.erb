@@ -1,0 +1,67 @@
+
+<div class="auth-entry">
+<div id="auth-container" class="auth-container auth-container_max-width_mmmm">
+    <div class="auth-form"><div class="auth-form__header">
+        <div class="auth-form__preview"><a href="<%= root_path%>" class="auth-form__image auth-form__image_logo"></a>
+        <%= link_to "\u{2613}"  , root_path, class: "close" %>
+        </div> 
+       
+    </div> 
+
+    <div class="auth-form__body">
+        <div class="auth-container auth-container_max-width_sssm">
+            <div class="auth-form__title auth-form__title_big auth-form__title_condensed-default">
+                Вход
+            </div>  
+
+            <%= form_for '/login', multsipart: true do |f| %>
+                <div class="row justify-content-md-center">
+                    <div class="col-md-12 pb-3 ">
+                    <%= f.label :email , "через ник, e-mail:" , class: "text-muted" %>
+                    <%= f.text_field :email, autofocus: true, autocomplete: "email",class: "form-control"  ,placeholder:"Ник или email" %>
+                    </div>
+                </div>
+               
+                <div class="row justify-content-md-center">
+                    <div class="col-md-12 my-sm-2">
+                        <%= f.password_field :password, autocomplete: "new-password" ,class: "form-control" , placeholder:"Пароль"%>
+                    </div>
+                </div>
+
+
+                <div class="row justify-content-md-center">
+                    <div class="col-md-12 pb-3 ">
+                    <% flash.each do |type, msg| %>
+                        <div class="invalid-feedback d-block">
+                          <p style="font-size:150%"><%= msg %></p>
+                        </div>
+                      <% end %>
+                    </div>
+                </div>
+
+                <div class="row justify-content-md-center">
+                    <div class="col-md-12 pb-3">
+                    <div class="actions">
+                        <%= f.submit "Войти", class: "auth-button auth-button_primary auth-button_middle auth-form__button auth-form__button_width_full" %>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="row justify-content-md-center">
+                    <div class="col-md-12">
+                         <p> <%= link_to "Зарегестрироваться на  Onliner", "/signup" %></p>
+                    </div>
+                </div>
+                
+
+            <% end %>
+        </div>
+
+    </div> 
+    
+
+<div class="auth-form__description auth-form__description_other auth-form__description_small auth-form__description_condensed">
+    © 2001–2021 Onliner
+</div>
+</div>
+
