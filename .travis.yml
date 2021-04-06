@@ -11,3 +11,4 @@ deploy:
   app: rails-test-app-article 
   on : 
     repo: KaterinaVshk/site_clone
+    
