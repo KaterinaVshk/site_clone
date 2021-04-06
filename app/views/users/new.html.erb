@@ -19,7 +19,7 @@
                     <% invalid = @user.errors.include?(:email) %>  
                     <div class="col-md-12 pb-3 ">
                         <%= f.label :email , "через e-mail:" , class: "text-muted" %>
-                        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control #{'is-invalid' if invalid}" , placeholder:"Ваш e-mail" %>
+                        <%= f.email_field :email, class: "form-control #{'is-invalid' if invalid}" , placeholder:"Ваш e-mail" %>
                         <% if invalid %>
                                 <% if @user[:email].blank?%>
                                     <div class="invalid-feedback d-block">
@@ -81,9 +81,8 @@
 
         </div> 
         
+        <%= render partial: "layouts/footerlogin"%>
 
-    <div class="auth-form__description auth-form__description_other auth-form__description_small auth-form__description_condensed">
-        © 2001–2021 Onliner
-    </div>
+   
 </div>
 
