@@ -2,9 +2,11 @@ language: ruby
 rvm:
   - 1.29.10
   - jruby
+before_install:
+- gem install bundler
 before_script:
-— bundle exec rake db:migrate
-— bundle exec rspec
+- bundle exec rake db:migrate
+- bundle exec rspec
 deploy: 
   provider: heroku 
   api_key: ENV['HEROKU_KEY']
