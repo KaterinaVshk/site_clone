@@ -8,11 +8,8 @@ AllCops:
   Exclude:
     - 'config/**/*'
     - 'spec/factories/**/*'
-    - 'app/models/*'
-    - 'spec/**/*'
     - 'lib/tasks/**/*'
     - 'vendor/**/*'
-    - 'app/views/**/*'
     - 'db/**/*'
     - 'bin/**/*'
     - 'csv/**/*'
@@ -39,9 +36,7 @@ Bundler/GemComment:
   Enabled: false
 
 
-
 Layout/LineLength:
   Max: 120
 Metrics/MethodLength:
-  Max: 30
-
+  Max: 40

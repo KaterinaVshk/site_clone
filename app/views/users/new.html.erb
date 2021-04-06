@@ -5,9 +5,7 @@
             <div class="auth-form__preview"><a href="<%= root_path%>" class="auth-form__image auth-form__image_logo"></a>
             <%= link_to "\u{2613}"  , root_path, class: "close" %>
             </div> 
-        
         </div> 
-
         <div class="auth-form__body">
             <div class="auth-container auth-container_max-width_sssm">
                 <div class="auth-form__title auth-form__title_big auth-form__title_condensed-default">
@@ -33,7 +31,6 @@
                             <% end %>
                         </div>
                     </div>
-                   
                     <div class="row justify-content-md-center">
                     <% invalid = @user.errors.include?(:password) %>
                         <div class="col-md-12">
@@ -48,8 +45,6 @@
                         </div>
                         </div>
                     </div>
-
-
                     <div class="row justify-content-md-center">
                         <div class="col-md-12 pb-3 ">
                         <% invalid = @user.errors.include?(:password_confirmation) %>
@@ -61,7 +56,6 @@
                         <% end %>
                         </div>
                     </div>
-
                     <div class="row justify-content-md-center">
                         <div class="col-md-12 pb-3">
                         <div class="actions">
@@ -69,20 +63,13 @@
                         </div>
                         </div>
                     </div>
-
                     <div class="row justify-content-md-center">
                         <div class="col-md-12">
                             <p>Есть профиль на Onliner?  <%= link_to "Войти", "/login" %></p>
                         </div>
                     </div>
-
                 <% end %>
             </div>
-
         </div> 
-        
         <%= render partial: "layouts/footerlogin"%>
-
-   
 </div>
-
