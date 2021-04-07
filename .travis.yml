@@ -7,6 +7,3 @@ before_install:
 before_script:
 - bundle exec rake db:migrate
 - bundle exec rspec
-deploy: 
-  provider: heroku 
-  api_key: ENV['HEROKU_KEY']
