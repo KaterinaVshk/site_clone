@@ -1,5 +1,8 @@
 FactoryBot.define do
+  categories = %w[people opinions auto technologies realty]
+  sequence(:id) { |n| n }
   factory :category do
-    name { "CategoryName" }
+    name { categories.shift }
+    id
   end
 end
