@@ -20,6 +20,6 @@ class SessionsController < ApplicationController
   private
 
   def user_params
-    params.require('/login').permit(:email, :password)
+    params.permit(:email, :password)
   end
 end

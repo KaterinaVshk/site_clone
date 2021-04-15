@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  skip_before_action :authentication
+  skip_before_action :authentication, only: %i[index show]
+  before_action :check_admin, only: %i[new create edit update destroy]
   before_action :set_article, only: %i[show edit update destroy]
   def index
     @articles = find_articles
