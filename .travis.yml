@@ -14,4 +14,12 @@ before_script:
   - bundle exec rake db:schema:load
 script:
   - bundle exec rspec
+deploy:
+  provider: heroku
+  run:
+    - "rake db:migrate"
+    - "rake db:seed"
+    - restart
+    - "rake cleanup"
+
   
