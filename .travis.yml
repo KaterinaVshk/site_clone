@@ -1,17 +1,26 @@
 language: ruby
 cache:
-  - bundler
-  - yarn
+- bundler
+- yarn
 services:
-  - postgresql
+- postgresql
 before_install:
-  - nvm install --lts
+- nvm install --lts
 before_script:
-  - bundle install --jobs=3 --retry=3
-  - yarn
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
-  - bundle exec rake db:schema:load
+- bundle install --jobs=3 --retry=3
+- yarn
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rake db:schema:load
 script:
-  - bundle exec rspec
-  
+- bundle exec rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: iNv1SS2tJCa/DNPaE52gP693iiX7WcS4tji3BgDUHCxDQ7HU1NiW6EGwBghKx48iwYnj8Ouo+wiMOXnX5+MkruvND87Um9Jy8kbf8zRvsL74b+Baou0VO5blUmqeu49dExWQFYcYF/nljTZGXtOx8EJmaKCFI3CitFk/K0MrMcvzirEFdw9Y3maf70loqRVB0zoG+uuXlWsj1zUv0+SUwNgC6gB/iGErjgxNBM0yRXnoYliFvjSXY0D1PqBt1YTfugn8lYqd3w/MZyFdVGYIZLZwbZkKe+8MiUr203GqtRlSk7PcQ8hjcU2Mk1IsI3gGbm4L41452/FyG28eZwW26la+HthW6fCiq3U6hO2xKqFKhhRNxgJjNNuV0OgCrOfDzYMDb5PLboUvMqF8SOPzwJN/tp7DFNCQHIDGwWEK9MVECPF+eT+Pfe0VVqkQaZKbGm3f5d4Qo/9ttpzgJTbBTtPlKrqJGXw8kMM7EOtTj1egZlG3Y6ZW8MdrOKZtmmlJjyGKYWeORlJofCw634QzSFtVXCLstj3IsIkw2RrkfW7+j2XqIhJT0UqOZeoGWtVpm9CGgblLrgT93mbiGHTSWZAMKKofcc8o1Uld3u29EFYmZTKCw4LNZvBalknsJVTNaqvq0gdsnvgtwKBw3Oijhb5bOGoGoHocrFbjZ88uaSk=
+  app: warm-scrubland-23842
+  run:
+  - rake db:migrate
+  - rake db:seed
+  - restart
+  - rake cleanup
