@@ -1,3 +1,5 @@
+<div class="bg-white">
+<div class="auth-content">
 <div class="auth-entry">
 <div id="auth-container" class="auth-container auth-container_max-width_mmmm">
     <div class="auth-form"><div class="auth-form__header">
@@ -10,7 +12,7 @@
             <div class="auth-form__title auth-form__title_big auth-form__title_condensed-default">
                 Вход
             </div>  
-            <%= form_for '/login', multsipart: true do |f| %>
+            <%= form_with  url: "/login", method: :post, multsipart: true do |f| %>
                 <div class="row justify-content-md-center">
                     <div class="col-md-12 pb-3 ">
                     <%= f.label :email , "через ник, e-mail:" , class: "text-muted" %>
@@ -25,9 +27,11 @@
                 <div class="row justify-content-md-center">
                     <div class="col-md-12 pb-3 ">
                     <% flash.each do |type, msg| %>
+                      <%if type == 'errors'%>
                         <div class="invalid-feedback d-block">
                           <p style="font-size:150%"><%= msg %></p>
                         </div>
+                      <%end%>
                       <% end %>
                     </div>
                 </div>
@@ -47,4 +51,6 @@
         </div>
     </div> 
     <%= render partial: "layouts/footerlogin"%>
+</div>
+</div>
 </div>
