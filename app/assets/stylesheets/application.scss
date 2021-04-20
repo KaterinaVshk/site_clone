@@ -12,3 +12,75 @@
  *
  */
  @import "bootstrap";
+ 
+body {
+  background-color: #e3e3e3;
+  font-family: 'Open Sans',Arial,Helvetica,Verdana,sans-serif;
+}
+.l-gradient-wrapper {
+  background-image: -o-linear-gradient(top,#fff,#fff 50%,#e4e4e4);
+  background-image: linear-gradient(to bottom,#fff,#fff 50%,#e4e4e4);
+  background-repeat: repeat-x;
+  background-size: 100% 150px;
+  min-width: 1000px;
+}
+.bg-white {
+  background-color: #ffffff;
+}
+.btn-my {
+  color: #212529;
+  background-color: #e8e8e8;
+  border-color: #f8f9fa;
+}
+.btn-admin {
+  color: #212529;
+  background-color: #e8e8e8;
+  border-color: #f8f9fa;
+}
+.btn-revoke_admin {
+  color: #212529;
+  background-color: #ffc107cc;
+  border-color:  #f8f9fa;
+}
+a { 
+ text-decoration: none;
+} 
+.alert {
+  width:1300px; 
+  height: 50px;   
+}
+.notice {
+  width:1300px; 
+  height: 50px;   
+}
+ol, ul, dl {
+  margin-top: 0;
+  margin-bottom: 0rem;
+}
+.profile-header__background {
+  height: 206px;
+  margin-left: -25px;
+  margin-right: -25px;
+  margin-top: -12px;
+  background-color: #ffda50;
+  background-position: 0 0;
+  display: block;
+  position: relative;
+}
+.profile-avatar {
+  margin-bottom: -58px;
+  bottom: 100%;
+  left: 0;
+  position: absolute;
+}
+.profile-form-text {
+  color: #999;
+}
+.project-navigation__part_1 .project-navigation__list:first-child {
+  margin-left: -56px;
+}
+.project-navigation__list {
+  margin: -9px 0;
+  display: inline-block;
+  vertical-align: top;
+}

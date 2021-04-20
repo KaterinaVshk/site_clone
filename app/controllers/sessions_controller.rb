@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to(root_path)
     else
-      redirect_to('/login', notice: 'Неверный логин или пароль')
+      flash[:errors] = 'Неверный логин или пароль'
+      redirect_to('/login')
     end
   end
 

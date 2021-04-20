@@ -1,0 +1,45 @@
+<div class="l-gradient-wrapper">
+  <%= render partial: "layouts/navigation"%>
+  <div class="g-middle" >
+    <div class="g-middle-i">
+    <%= render partial: "layouts/notification"%>  
+      <div class="row justify-content-md-center mb-3">
+      <div class="col col-lg-4">
+      <h5 align="left"> <%= link_to "На главную", root_path, class: "text-secondary"%></h5>
+      </div>
+      <div class="col mb-3">
+      <h2 align="left">Список всех пользователей</h2>
+      </div>
+      </div>
+      <% @users.each do |user| %>
+        <div class="row justify-content-md-center">
+          <div class="col-1 mb-3">
+            <%= link_to image_tag("avatar.png",class: "img-fluid rounded-circle"), controller: "users", action: "show", id: user.id %>
+          </div>          
+          
+          <div class="col-4 mb-1">
+            <div class="row">
+              <h5> <%= "id: #{user.id}" %></h5>
+            </div>
+            <div class="row">
+              <h6> <%= "email: #{user.email}" %></h6>
+            </div>
+            <%type = user.type%>
+            <div class="row">
+              <h6> <%= "Права: #{type}" %></h6>
+            </div>
+          </div> 
+          <% if type == 'Admin'%>
+            <div class="col-2 mb-1">
+              <%= button_to "Забрать права администратора", {:controller => :users, :action => 'cancel_admin_rights', :id => user.id }, :method => :put , :class => "btn btn-revoke_admin" %>
+            </div>
+          <% else %>
+            <div class="col-2 mb-1">
+              <%= button_to "Сделать администратором", {:controller => :users, :action => 'make_admin', :id => user.id }, :method => :put , :class => "btn btn-admin" %>
+            </div>
+          <% end %>
+        </div>  
+      <% end %> 
+    </div>
+  </div>
+</div>

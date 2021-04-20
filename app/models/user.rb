@@ -7,5 +7,6 @@ class User < ApplicationRecord
             format: { with: VALID_EMAIL, message: ' Некорректный email ' }
   validates :password,
             length: { minimum: 8, maxmimum: 64, message: 'Пароль должен быть от 8 до 64 символов' },
-            presence: { message: 'Пароль обязательный' }
+            presence: { message: 'Пароль обязательный' },
+            on: :create
 end

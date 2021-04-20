@@ -1,0 +1,105 @@
+<div class="l-gradient-wrapper">
+<%= render partial: "layouts/navigation"%>
+  <div class="g-middle">
+    <div class="g-middle-i">
+      <div class="col-md-12">
+        <div class="profile-header__background"></div> 
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col-1 mb-2 ml-2">
+          <div class="profile-avatar">
+            <%= image_tag("avatar.png" ,class: "img-fluid rounded-circle") %> 
+          </div>          
+        </div>
+        <div class="col-8 mb-1">
+          <div class="row">
+            <h5> <%= "#{@user.id}" %></h5>
+          </div>
+          <div class="row">
+            <p class="text-muted"> <%= "Onliner ID: #{@user.id}" %></p> 
+          </div>
+        </div>  
+        <%if current_user.type=="Admin"%>
+          <div class="col-2 mb-1">
+              <h5> <%=link_to "Список всех пользователей", users_path, class: "text-secondary"%></h5>
+          </div>  
+        <%end%>
+      </div>
+      
+      <div class="col-12 mb-2 ml-2 mt-3">
+        <h5> Личные данные</h5>
+        <table class="table">
+          <tr> <th>
+            <div class="profile-form-text"> 
+              <div class="row justify-content-md-center">
+                <div class="col-1">
+                  <%= image_tag("profile-icon.png" , size:"30",class: "img-fluid rounded-circle") %>        
+                </div>
+
+                <div class="col col-lg-2 my-2">    
+                  <div class="row mb-2">
+                   <h6> Ник </h6>
+                  </div>
+                  <div class="row mb-2">
+                    <h6> ФИО </h6>
+                  </div>
+                  <div class="row mb-2">
+                    <h6> Дата рождения </h6>
+                  </div>
+                  <div class="row mb-2">
+                    <h6> Из города </h6>
+                  </div>
+                </div>
+
+                <div class="col auto"> 
+                  <div class="row ">
+                    <div class ="col col-lg-4">  
+                      <h6 style="color:black;"> <%= "#{@user.id}" %> </h6>
+                    </div>
+                    <%if current_user.id == @user.id%>
+                      <div class ="col auto">  
+                        <h6><%=link_to "Изменить"%></h6>
+                      </div>
+                    <%end%>
+                  </div>
+                  <div class="row">
+                    <h6>—</h6>
+                  </div>
+                  <div class="row">
+                    <h6>—</h6>
+                  </div>
+                  <div class="row">
+                    <h6>—</h6>
+                  </div>
+                </div>
+
+              </div>
+            </div>  
+          </th></tr>
+        </table>
+      </div>
+
+      <div class="col-12 mb-2 ml-2 mt-3">
+      <div class="profile-form-text"> 
+      <div class="row justify-content-md-center">
+        <div class="col-1 ml-2">
+          <%= image_tag("email.png" , size:"30") %>        
+        </div>
+        <div class="col col-lg-2 my-2">    
+          <div class="row mb-2">
+            <h6> Email </h6>
+          </div>
+        </div>
+        <div class="col auto"> 
+          <div class="row ">
+            <div class ="col col-lg-4">  
+              <h6 style="color:black;"> <%= "#{@user.email}" %> </h6>
+            </div>
+          </div>
+        </div>
+      </div> 
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

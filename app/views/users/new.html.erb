@@ -1,75 +1,81 @@
-
+<div class="bg-white">
+<div class="auth-content">
 <div class="auth-entry">
-    <div id="auth-container" class="auth-container auth-container_max-width_mmmm">
-        <div class="auth-form"><div class="auth-form__header">
-            <div class="auth-form__preview"><a href="<%= root_path%>" class="auth-form__image auth-form__image_logo"></a>
-            <%= link_to "\u{2613}"  , root_path, class: "close" %>
-            </div> 
-        </div> 
-        <div class="auth-form__body">
-            <div class="auth-container auth-container_max-width_sssm">
-                <div class="auth-form__title auth-form__title_big auth-form__title_condensed-default">
-                    Регистрация
-                </div>  
-
-                <%= form_for @user, url: '/signup', multsipart: true do |f| %>
-                    <div class="row justify-content-md-center">
-                    <% invalid = @user.errors.include?(:email) %>  
-                    <div class="col-md-12 pb-3 ">
-                        <%= f.label :email , "через e-mail:" , class: "text-muted" %>
-                        <%= f.email_field :email, class: "form-control #{'is-invalid' if invalid}" , placeholder:"Ваш e-mail" %>
-                        <% if invalid %>
-                                <% if @user[:email].blank?%>
-                                    <div class="invalid-feedback d-block">
-                                        <p><big> <%=  @user.errors.messages[:email][1] %></big></p> 
-                                    </div>
-                                <%else%>
-                                    <div class="invalid-feedback d-block">
-                                        <p> <big> <%=  @user.errors.messages[:email][0] %></big></p> 
-                                    </div>
-                                <%end%>
-                            <% end %>
-                        </div>
-                    </div>
-                    <div class="row justify-content-md-center">
-                    <% invalid = @user.errors.include?(:password) %>
-                        <div class="col-md-12">
-                            <%= f.password_field :password, autocomplete: "new-password" ,class: "form-control #{'is-invalid' if invalid}" , placeholder:"Придумайте пароль"%>
-                            <div class="my-sm-2">
-                            <% if invalid %>
-                                <div class="invalid-feedback d-block">
-                                    <p><big>Пароль должен быть от 8 до 64 символов</big> </p> 
-                                </div>
-                            <% end %>
-                            <p> Минимум 8 символов.</p>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-md-center">
-                        <div class="col-md-12 pb-3 ">
-                        <% invalid = @user.errors.include?(:password_confirmation) %>
-                        <%= f.password_field :password_confirmation, class: "form-control #{'is-invalid' if invalid}"  , placeholder:"Повторите пароль" %>
-                        <% if invalid %>
-                        <div class="invalid-feedback d-block">
-                            <p><big> Пароли не совпадают</big></p> 
-                        </div>
-                        <% end %>
-                        </div>
-                    </div>
-                    <div class="row justify-content-md-center">
-                        <div class="col-md-12 pb-3">
-                        <div class="actions">
-                            <%= f.submit "Зарегестрироваться", class: "auth-button auth-button_primary auth-button_middle auth-form__button auth-form__button_width_full" %>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-md-center">
-                        <div class="col-md-12">
-                            <p>Есть профиль на Onliner?  <%= link_to "Войти", "/login" %></p>
-                        </div>
-                    </div>
-                <% end %>
+  <div id="auth-container" class="auth-container auth-container_max-width_mmmm">
+    <div class="auth-form"><div class="auth-form__header">
+      <div class="auth-form__preview"><a href="<%= root_path%>" class="auth-form__image auth-form__image_logo"></a>
+        <%= link_to "\u{2613}"  , root_path, class: "close" %>
+      </div> 
+    </div> 
+    
+    <div class="auth-form__body">
+      <div class="auth-container auth-container_max-width_sssm">
+        <div class="auth-form__title auth-form__title_big auth-form__title_condensed-default">Регистрация</div>  
+        
+        <%= form_for @user, url: '/signup', multsipart: true do |f| %>
+          <div class="row justify-content-md-center">
+            <% invalid = @user.errors.include?(:email) %>  
+            <div class="col-md-12 pb-3 ">
+              <%= f.label :email , "через e-mail:" , class: "text-muted" %>
+              <%= f.email_field :email, class: "form-control #{'is-invalid' if invalid}" , placeholder:"Ваш e-mail" %>
+              
+              <% if invalid %>
+                <% if @user[:email].blank?%>
+                  <div class="invalid-feedback d-block">
+                    <p><big> <%=  @user.errors.messages[:email][1] %></big></p> 
+                  </div>
+                <%else%>
+                  <div class="invalid-feedback d-block">
+                    <p> <big> <%=  @user.errors.messages[:email][0] %></big></p> 
+                  </div>
+                <%end%>
+              <% end %>
             </div>
-        </div> 
-        <%= render partial: "layouts/footerlogin"%>
+          </div>
+          <div class="row justify-content-md-center">
+          <% invalid = @user.errors.include?(:password) %>
+            <div class="col-md-12">
+              <%= f.password_field :password, autocomplete: "new-password" ,class: "form-control #{'is-invalid' if invalid}" , placeholder:"Придумайте пароль"%>
+              <div class="my-sm-2">
+                <% if invalid %>
+                  <div class="invalid-feedback d-block">
+                    <p><big>Пароль должен быть от 8 до 64 символов</big> </p> 
+                  </div>
+                <% end %>
+                <p> Минимум 8 символов.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-md-center">
+            <div class="col-md-12 pb-3 ">
+              <% invalid = @user.errors.include?(:password_confirmation) %>
+              <%= f.password_field :password_confirmation, class: "form-control #{'is-invalid' if invalid}"  , placeholder:"Повторите пароль" %>
+              <% if invalid %>
+                <div class="invalid-feedback d-block">
+                  <p><big> Пароли не совпадают</big></p> 
+                </div>
+              <% end %>
+            </div>
+          </div>
+          
+          <div class="row justify-content-md-center">
+            <div class="col-md-12 pb-3">
+              <div class="actions">
+                <%= f.submit "Зарегестрироваться", class: "auth-button auth-button_primary auth-button_middle auth-form__button auth-form__button_width_full" %>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-md-12">
+              <p>Есть профиль на Onliner?  <%= link_to "Войти", "/login" %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div> 
+    <%= render partial: "layouts/footerlogin"%>
+  </div>  
+</div>
+</div>
 </div>
