@@ -1,0 +1,171 @@
+<div class="news-wrapper">
+  <div class="container-x d-flex mb-3">
+    <div class="row">
+      <% @articles.each do |article| %> 
+        <div class="col-sm-3 box2">  
+          <div class="img-wrap">
+            <div class="img-wrap-bright ">
+              <a href="<%= article_path(article.id)%>">
+                <div  class="div-news-title">
+                  <img  src="<%= rails_blob_url(article.image) %>"width="348" height="170">
+                </div>
+              </a>
+            </div>
+            <a href="" class="tile-section"><%=article.category_russian_name%></a>
+            <a href="" class="b-tile-comments"><b><span>0</span></b></a>
+            <h5><b><%= link_to "#{article.title}", article_path(article.id), class: "text-white"%><span></b></h5>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row ">
+      <div class="col-md-12 mb-2">
+        <div class="news-category-title"><%= link_to "ЛЮДИ", '/news/people', class: "text-dark"%></div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="container-x d-flex mb-3">
+    <div class="row">
+      <% people = @articles.where(category_id: 1).limit(10) %> 
+      <%= render partial: "line_articles_to_category",object: people[0..4], as: 'articles'%>
+    </div>
+  </div>
+
+  <div class="container-x d-flex">
+    <div class="row my-2 mx-2">
+      <% people[0..1].each_with_index do |article,index| %> 
+        <%if index == 0 %>
+          <%= render partial: "wide_article",object: article, as: 'article'%>
+        <%end%>
+        <%if index == 1 %>
+          <%= render partial: "narrow_article",object: article, as: 'article'%>
+        <%end%>
+      <%end%>
+      <div class="custom-col-news mb-2">  
+          <%= render partial: "column_articles",object: people[2..4], as: 'articles'%>
+      </div>
+      <div class="col-md-12 mt-3">  
+        <div class="horisontal_gray_line mt-3"></div>
+      </div>
+    </div>    
+  </div>
+  <div class="col-md-12 ">  
+    <a href="/news/people" class="footer-button">Все новости о людях</a>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row ">
+      <div class="col-md-12 mb-2">
+        <div class="news-category-title"><%= link_to "Авто", '/news/people', class: "text-dark"%></div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="container-x d-flex mb-3">
+    <div class="row">
+      <% car = @articles.where(category_id: 1).limit(10) %> 
+      <%= render partial: "line_articles_to_category",object: car[0..4], as: 'articles'%>
+    </div>
+  </div>
+
+  <div class="container-x d-flex">
+    <div class="row my-2 mx-2">
+      <% car[0..1].each_with_index do |article,index| %> 
+        <%if index == 0 %>
+         <%= render partial: "narrow_article",object: article, as: 'article'%>
+         
+        <%end%>
+        <%if index == 1 %>
+        <%= render partial: "wide_article",object: article, as: 'article'%>
+        <%end%>
+      <%end%>
+      <div class="custom-col-news mb-2">  
+          <%= render partial: "column_articles",object: car[2..4], as: 'articles'%>
+      </div>
+      <div class="col-md-12 mt-3">  
+        <div class="horisontal_gray_line mt-3"></div>
+      </div>
+    </div>    
+  </div>
+  <div class="col-md-12">  
+    <a href="/news/people" class="footer-button">Все новости об автомобилях</a>
+  </div>
+  
+  <div class="container-fluid">
+    <div class="row ">
+      <div class="col-md-12 mb-2">
+        <div class="news-category-title"><%= link_to "Технологии", '/news/people', class: "text-dark"%></div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="container-x d-flex mb-3">
+    <div class="row">
+      <% people = @articles.where(category_id: 1).limit(10) %> 
+      <%= render partial: "line_articles_to_category",object: people[0..4], as: 'articles'%>
+    </div>
+  </div>
+
+  <div class="container-x d-flex">
+    <div class="row my-2 mx-2">
+      <% people[0..1].each_with_index do |article,index| %> 
+        <%if index == 0 %>
+          <%= render partial: "wide_article",object: article, as: 'article'%>
+        <%end%>
+        <%if index == 1 %>
+          <%= render partial: "narrow_article",object: article, as: 'article'%>
+        <%end%>
+      <%end%>
+      <div class="custom-col-news mb-2">  
+          <%= render partial: "column_articles",object: people[2..4], as: 'articles'%>
+      </div>
+      <div class="col-md-12 mt-3">  
+        <div class="horisontal_gray_line mt-3"></div>
+      </div>
+    </div>    
+  </div>
+  <div class="col-md-12 ">  
+    <a href="/news/people" class="footer-button">Все новости о технологиях</a>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row ">
+      <div class="col-md-12 mb-2">
+        <div class="news-category-title"><%= link_to "Авто", '/news/people', class: "text-dark"%></div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="container-x d-flex mb-3">
+    <div class="row">
+      <% car = @articles.where(category_id: 1).limit(10) %> 
+      <%= render partial: "line_articles_to_category",object: car[0..4], as: 'articles'%>
+    </div>
+  </div>
+
+  <div class="container-x d-flex">
+    <div class="row my-2 mx-2">
+      <% car[0..1].each_with_index do |article,index| %> 
+        <%if index == 0 %>
+         <%= render partial: "narrow_article",object: article, as: 'article'%>
+         
+        <%end%>
+        <%if index == 1 %>
+        <%= render partial: "wide_article",object: article, as: 'article'%>
+        <%end%>
+      <%end%>
+      <div class="custom-col-news mb-2">  
+          <%= render partial: "column_articles",object: car[2..4], as: 'articles'%>
+      </div>
+      <div class="col-md-12 mt-3">  
+        <div class="horisontal_gray_line mt-3"></div>
+      </div>
+    </div>    
+  </div>
+  <div class="col-md-12 ">  
+    <a href="/news/people" class="footer-button">Все новости о недвижимости</a>
+  </div>
+</div>  

@@ -3,23 +3,11 @@
   <div class="g-middle">
     <div class="g-middle-i">
     <%= render partial: "layouts/navigation_menu"%>
-    <% @articles.each do |article| %>
-
-      <div class="col-md-4 mb-4">
-        <table class="table text-white">
-          <tbody>
-          <tr>
-            <th scope="row"><strong>Name:</strong></th>
-            <td><%= link_to "#{article.title}", article_path(article.id) %></td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <%end%>
-
-
-
-
-</div>
+    <%if params[:category] == "all"%>
+    <%= render partial: "all_news"%>
+    <%else%>
+    <%= render partial: "news_to_category"%>
+    <%end%>
+  </div>
 </div>
 </div>

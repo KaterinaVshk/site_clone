@@ -3,25 +3,54 @@
   <div class="g-middle">
     <div class="g-middle-i">
     <%= render partial: "layouts/navigation_menu"%>
-      <div class = " news-header__image">
-         <%= image_tag(@article.image, width: "1380", height: "700")%>
-      </div>
-      <div class="col-md-6 offset-md-3">
-        <div class="row my-4">
-         <h1 align="center"> <b><%= @article.title %></b></h1>
-        </div>
-        <div class="row mb-5">
-        <div class="p-text"> <%= @article.text %></div>
-        </div>
-        <%if current_user && current_user.type == "Admin"%>
-          <div class="row mb-5">
-            <%= button_to "Редактировать статью", {:controller => :articles, :action => 'edit', :id => @article.id }, 
-            :method => :get , :class => "auth-button auth-button_primary auth-button_middle auth-form__button auth-form__button_width_full" %>
+    <div class="news-wrapper">
+      <div class="news-posts">
+      <div class="news-header news-header_extended">
+        <div class="news-header__preview">
+    
+            <div class = "news-header__image" style="background-image: url(<%= rails_blob_url(@article.image) %>);">  
+            </div>
+              
+              <div class="news-header__bottom">
+                <div class="news-header__detail news-header__detail_position_left">
+                  <div class="news-header__flex">
+                    <div class="news-header__part news-header__part_1">
+                      <div class="news-header__control">
+                        <a href="#comments" class="button-style button-style_adscititious button-style_small news-header__button news-header__button_comments" id="news-header-comments-counter">0</a>
+                        <div class="news-header__time">
+                        <%= @article.parse_date %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="news-header__part news-header__part_2">
+                    <div class="news-header__author news-helpers_hide_mobile">
+                      Автор: <%= @article.admin_id %>
+                    </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            </div>
           </div>
-        <%end%>
+        </div>
       </div>
 
+      <div class="news-text">
+        <div class="news-header__title">
+          <h1 align="center"><%= @article.title %></h1>
+        </div>
+            <p><%= simple_format(@article.text)%></p>
+        </div>
+        <div class="col-md-6 offset-md-3">
+          <%if current_user && current_user.type == "Admin"%>
+            <div class="row mb-5">
+              <%= button_to "Редактировать статью", {:controller => :articles, :action => 'edit', :id => @article.id }, 
+              :method => :get , :class => "auth-button auth-button_primary auth-button_middle auth-form__button auth-form__button_width_full" %>
+            </div>
+          <%end%>
+        </div>
 
+</div>
     </div>
 </div>
 </div>

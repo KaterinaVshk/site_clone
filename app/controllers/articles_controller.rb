@@ -20,16 +20,11 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def show
-    @article = Article.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @article = Article.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update(article_params)
       redirect_to(action: 'show', id: @article)
     else
@@ -51,7 +46,8 @@ class ArticlesController < ApplicationController
 
   def article_params
     parameters = params.require(:article).permit(:title, :text, :image)
-    parameters[:category_id] = Article::CATEGORY_MAP[params[:article][:category].to_sym]
+    parameters[:category_id] = Article::CATEGORY_MAP[params[:article][:category].to_sym] if params[:article][:category]
+    parameters[:admin_id] = current_user.id
     parameters
   end
 

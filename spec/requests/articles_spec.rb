@@ -1,31 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe('Articles', type: :request) do
-  let(:category1)    { create(:category)                                                }
-  let(:category2)    { create(:category, name: 'auto')                                  }
-  let!(:article1)    { create(:article, category: category1)                            }
-  let!(:article2)    { create(:article, category: category2)                            }
+  let!(:category1)   { create(:category)                                                }
+  let!(:category2)   { create(:category, name: 'opinions', id: 2)                       }
   let!(:admin)       { create(:admin)                                                   }
-  let(:admin_params) { { email: admin.email, password: admin.password }                 }
   let!(:user)        { create(:user)                                                    }
-  let(:user_params)  {  { email: user.email, password: user.password }                  }
-  let(:article2_params) do
+  let!(:article1)    { create(:article, category: category1, admin_id: admin.id)        }
+  let!(:article2)    { create(:article, category: category2, admin_id: admin.id)        }
+  let(:admin_params) { { email: admin.email, password: admin.password }                 }
+  let!(:user_params) { { email: user.email, password: user.password }                   }
+  let!(:article2_params) do
     {
       title: article2.title,
       text: article2.text,
       image: Rack::Test::UploadedFile.new(Rails.root.join('spec/factories/images/dog.jpeg'), 'image/jpeg'),
-      category_id: article2.category_id
+      category: category2.name
     }
   end
 
   describe '#index' do
     it 'receives articles of a certain category' do
-      get "/articles/#{Category.find(article1.category_id).name}"
-      expect(assigns(:articles)).to(eq(article1))
+      get "/news/#{Category.find(article1.category_id).name}"
+      expect(assigns(:articles)[0]).to(eq(article1))
     end
 
     it 'recivies all the articles' do
-      get '/articles'
+      get '/news'
       expect(assigns(:articles)).to(eq(Article.all))
     end
   end
@@ -57,15 +57,10 @@ RSpec.describe('Articles', type: :request) do
         post '/login', params: admin_params
         params_article = {
           text: article2.text,
-          category_id: article2.category_id
+          category_id: category2.id
         }
         post '/articles', params: { article: params_article }
-        expect(response).to(
-          redirect_to(
-            action: :new,
-            notice: 'Данные заполнены неверно, попробуйте ещё раз'
-          )
-        )
+        expect(flash[:alert]).to(eq('Данные заполнены неверно, попробуйте ещё раз'))
       end
     end
   end
@@ -74,7 +69,7 @@ RSpec.describe('Articles', type: :request) do
     context 'with valid attributes' do
       it 'saves article and redirect to article path' do
         post '/login', params: admin_params
-        patch "/articles/#{article2.id}", params: { article: { title: 40 } }
+        patch "/articles/#{article2.id}", params: { article: { title: 40, category: category1.name } }
         expect(response).to(
           redirect_to(
             action: :show,
@@ -97,12 +92,12 @@ RSpec.describe('Articles', type: :request) do
     context 'with invalid attributes' do
       it "redirect to 'edit' nonexistent category" do
         post '/login', params: admin_params
-        patch "/articles/#{article2.id}", params: { article: { category_id: 300 } }
+        patch "/articles/#{article2.id}", params: { article: { category: 'fdgb' } }
+        expect(flash[:alert]).to(eq('Данные заполнены неверно, попробуйте ещё раз'))
         expect(response).to(
           redirect_to(
             action: :edit,
-            id: article2.id,
-            notice: 'Данные заполнены неверно, попробуйте ещё раз'
+            id: article2.id
           )
         )
       end

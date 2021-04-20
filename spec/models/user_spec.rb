@@ -20,7 +20,7 @@ RSpec.describe(User, type: :model) do
       it { is_expected.to(validate_presence_of(:password).with_message('Пароль обязательный')) }
 
       it {
-        is_expected.to(validate_length_of(:password).is_at_least(8).with_message('Пароль должен быть от 8 до 64 символов'))
+        expect(subject).to(validate_length_of(:password).is_at_least(8).with_message('Пароль должен быть от 8 до 64 символов'))
       }
     end
   end

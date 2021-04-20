@@ -1,0 +1,51 @@
+<div class="news-wrapper">
+  <div class="container-x d-flex mb-3">
+    <div class="row">
+      <% @articles.each do |article| %> 
+        <div class="col-sm-3 box2">  
+            <div class="img-wrap">
+              <div class="img-wrap-bright ">
+              <a href="<%= article_path(article.id)%>"><div  class="div2">
+              <img  src="<%= rails_blob_url(article.image) %>"width="348" height="170">
+              </div></a>
+              </div>
+              <div class ="comments">
+                <a href="" class="button-style button-style_adscititious button-style_small news-header__button news-header__button_comments" id="news-header-comments-counter"> 0 </a>
+              </div>
+                <h5><b><%= link_to "#{article.title}", article_path(article.id), class: "text-white"%></b></h5>
+            </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-8 ml-5">
+        <h5>Все новости:</h5>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="container d-flex">
+    <div class="row my-2 mx-2 mt-5">
+      <% @articles.each do |article| %> 
+        <div class="col-md-4 mb-2">  
+          <div class="card border-0 ">   
+            <img class="card-img-top" src="<%= rails_blob_url(article.image) %>" height="200">
+            <div class="card-body">
+              <div class="news-tidings__clamping">
+                <div class="news-tidings__subtitle">
+                  <h5 class="card-title"><a><b><%= link_to "#{article.title}", article_path(article.id) %></b></a></h5>
+                </div>
+                <div class="news-tidings__speech news-helpers_hide_mobile-small">
+                  <div class="card-text"><%= simple_format(article.text.truncate(270)) %></div>
+                </div>
+              </div>
+              <%= render partial: "comment_and_date",object: article, as: 'article'%>
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
