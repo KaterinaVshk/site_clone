@@ -46,7 +46,7 @@ a {
  text-decoration: none;
 } 
 .alert {
-  width:1300px; 
+  width: 900px; 
   height: 50px;   
 }
 .notice {
@@ -83,4 +83,18 @@ ol, ul, dl {
   margin: -9px 0;
   display: inline-block;
   vertical-align: top;
+}
+.form-border{
+  padding-top: 35px;
+  padding-bottom: 35px;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+}
+.news-header__image{
+  margin-top: -12px;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.p-text {
+  font-size: 20px;
 }

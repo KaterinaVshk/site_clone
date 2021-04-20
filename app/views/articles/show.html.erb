@@ -1,0 +1,28 @@
+<div class="l-gradient-wrapper">
+<%= render partial: "layouts/navigation"%>
+  <div class="g-middle">
+    <div class="g-middle-i">
+    <%= render partial: "layouts/navigation_menu"%>
+      <div class = " news-header__image">
+         <%= image_tag(@article.image, width: "1380", height: "700")%>
+      </div>
+      <div class="col-md-6 offset-md-3">
+        <div class="row my-4">
+         <h1 align="center"> <b><%= @article.title %></b></h1>
+        </div>
+        <div class="row mb-5">
+        <div class="p-text"> <%= @article.text %></div>
+        </div>
+        <%if current_user && current_user.type == "Admin"%>
+          <div class="row mb-5">
+            <%= button_to "Редактировать статью", {:controller => :articles, :action => 'edit', :id => @article.id }, 
+            :method => :get , :class => "auth-button auth-button_primary auth-button_middle auth-form__button auth-form__button_width_full" %>
+          </div>
+        <%end%>
+      </div>
+
+
+    </div>
+</div>
+</div>
+</div>

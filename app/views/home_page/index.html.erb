@@ -7,52 +7,32 @@
     <div class="project-navigation__flex">
         <div class="project-navigation__part project-navigation__part_1">
             <ul class="project-navigation__list project-navigation__list_primary">
-               <li class="project-navigation__item project-navigation__item_primary project-navigation__item_active">
-                  <a href="" class="project-navigation__link project-navigation__link_primary">
+               <li class="project-navigation__item project-navigation__item_primary #{'project-navigation__item_active' if params[:category] == "people"}">
+                  <a href="/news" class="project-navigation__link project-navigation__link_primary">
                     <span class="project-navigation__text">
-                      <span class="project-navigation__sign">Люди</span>
-                    </span>
-                  </a>
-                </li>
-                <li class="project-navigation__item project-navigation__item_primary ">
-                  <a href="" class="project-navigation__link project-navigation__link_primary">
-                    <span class="project-navigation__text">
-                      <span class="project-navigation__sign">Мнения</span>
-                    </span>
-                  </a>
-                </li>
-                <li class="project-navigation__item project-navigation__item_primary ">
-                  <a href="" class="project-navigation__link project-navigation__link_primary">
-                    <span class="project-navigation__text">
-                      <span class="project-navigation__sign">Авто</span>
-                    </span>
-                  </a>
-                </li>
-                <li class="project-navigation__item project-navigation__item_primary ">
-                  <a href="" class="project-navigation__link project-navigation__link_primary">
-                    <span class="project-navigation__text">
-                      <span class="project-navigation__sign">Технологии</span>
-                    </span>
-                  </a>
-                </li>
-                <li class="project-navigation__item project-navigation__item_primary ">
-                  <a href="" class="project-navigation__link project-navigation__link_primary">
-                    <span class="project-navigation__text">
-                      <span class="project-navigation__sign">Недвижимость</span>
+                      <span class="project-navigation__sign">Новости</span>
                     </span>
                   </a>
                 </li>
                 <%if current_user && current_user.type == "Admin"%>
-                  <li class="project-navigation__item project-navigation__item_primary ">
-                    <a href="<%=users_path %>"" class="project-navigation__link project-navigation__link_primary">
-                      <span class="project-navigation__text">
-                        <span class="project-navigation__sign">Пользователи</span>
-                      </span>
-                    </a>
-                  </li>
-                <%end%>  
+                <li class="project-navigation__item project-navigation__item_primary ">
+                  <a href="<%=users_path %>" class="project-navigation__link project-navigation__link_primary">
+                    <span class="project-navigation__text">
+                      <span class="project-navigation__sign">Пользователи</span>
+                    </span>
+                  </a>
+                </li>
+
+                <li class="project-navigation__item project-navigation__item_primary ">
+                <a href="<%= new_article_path%>" class="project-navigation__link project-navigation__link_primary">
+                  <span class="project-navigation__text">
+                    <span class="project-navigation__sign">Добавить новость</span>
+                  </span>
+                </a>
+              </li>
+              <%end%>  
               </ul>
-          </div>
+            </div>
     </div>
 </div>
 </div>

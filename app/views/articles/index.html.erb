@@ -1,7 +1,25 @@
 <div class="l-gradient-wrapper">
-      <%= render partial: "layouts/navigation"%>
-      <div class="g-middle">
-      <div class="g-middle-i">
-    </div>
-  </div>
+<%= render partial: "layouts/navigation"%>
+  <div class="g-middle">
+    <div class="g-middle-i">
+    <%= render partial: "layouts/navigation_menu"%>
+    <% @articles.each do |article| %>
+
+      <div class="col-md-4 mb-4">
+        <table class="table text-white">
+          <tbody>
+          <tr>
+            <th scope="row"><strong>Name:</strong></th>
+            <td><%= link_to "#{article.title}", article_path(article.id) %></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <%end%>
+
+
+
+
+</div>
+</div>
 </div>

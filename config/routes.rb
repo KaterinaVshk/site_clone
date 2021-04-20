@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   put '/cancel_admin/:id' , to:'users#cancel_admin_rights'
   get '/users/:id' , to:'users#show'
   root 'home_page#index'
-  get '/articles/:category', to:'articles#index'
-  get '/articles', category: 'all', to:'articles#index'
+  get '/news/:category', to:'articles#index'
   resources :articles, only: [:new, :create, :show, :edit, :update, :destroy]
+  get '/news', category: 'all', to:'articles#index'
 end
