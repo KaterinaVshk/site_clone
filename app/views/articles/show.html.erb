@@ -1,0 +1,57 @@
+<div class="l-gradient-wrapper">
+<%= render partial: "layouts/navigation"%>
+  <div class="g-middle">
+    <div class="g-middle-i">
+    <%= render partial: "layouts/navigation_menu"%>
+    <div class="news-wrapper">
+      <div class="news-posts">
+      <div class="news-header news-header_extended">
+        <div class="news-header__preview">
+    
+            <div class = "news-header__image">
+              <img src="<%= rails_blob_url(@article.image) %>" width="100%"%>
+              
+              <div class="news-header__bottom">
+                <div class="news-header__detail news-header__detail_position_left">
+                  <div class="news-header__flex">
+                    <div class="news-header__part news-header__part_1">
+                      <div class="news-header__control">
+                        <a href="#comments" class="button-style button-style_adscititious button-style_small news-header__button news-header__button_comments" id="news-header-comments-counter">0</a>
+                        <div class="news-header__time">
+                        <%= @article.parse_date %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="news-header__part news-header__part_2">
+                    <div class="news-header__author news-helpers_hide_mobile">
+                      Автор: <%= @article.admin_id %>
+                    </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-text">
+        <div class="news-header__title">
+          <h1 align="center"><%= @article.title %></h1>
+        </div>
+            <p><%= simple_format(@article.text)%></p>
+        </div>
+        <div class="col-md-6 offset-md-3">
+          <%if current_user && current_user.type == "Admin"%>
+            <div class="row mb-5">
+              <%= button_to "Редактировать статью", {:controller => :articles, :action => 'edit', :id => @article.id }, 
+              :method => :get , :class => "auth-button auth-button_primary auth-button_middle auth-form__button auth-form__button_width_full" %>
+            </div>
+          <%end%>
+        </div>
+
+</div>
+    </div>
+</div>
+</div>
+</div>

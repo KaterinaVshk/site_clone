@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe('Users', type: :request) do
-  let!(:user1) { create(:user) }
+  let!(:user1)       { create(:user)                                    }
   let!(:admin)       { create(:admin)                                   }
   let(:admin_params) { { email: admin.email, password: admin.password } }
-  let(:user_params)  {  { email: user1.email, password: user1.password }  }
-
+  let(:user_params)  { { email: user1.email, password: user1.password } }
 
   describe '#index' do
     it 'receives all users when admin' do
@@ -82,7 +81,7 @@ RSpec.describe('Users', type: :request) do
           )
         )
       end
-     end
+    end
   end
 
   describe '#cancel_admin_rights' do
@@ -109,7 +108,6 @@ RSpec.describe('Users', type: :request) do
           )
         )
       end
-     end
+    end
   end
-
 end

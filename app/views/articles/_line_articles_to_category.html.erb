@@ -1,0 +1,14 @@
+<% articles.each do |article| %>  
+  <div class="custom-col-2 box2-small">  
+    <div class="img-wrap-small">
+      <div class="img-wrap-small-bright ">
+        <a href="<%= article_path(article.id)%>">
+          <div  class="div-news-title-small">
+            <img  src="<%= rails_blob_url(article.image) %>"width="278" height="100">
+          </div>
+        </a>
+      </div>
+      <h5><b><%= link_to "#{article.title}", article_path(article.id), class: "text-white"%><span></b></h5>
+    </div>
+  </div>
+<%end%>

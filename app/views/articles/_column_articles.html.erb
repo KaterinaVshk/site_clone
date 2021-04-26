@@ -1,0 +1,20 @@
+<% articles.each_with_index do |article,index| %> 
+  <div class="row  <%='mb-3' if index == 0 %> <%='my-3' if index == 1 %> <%='mt-3' if index == 2 %> ">
+    <div class="col-7">
+      <a href="<%= article_path(article.id)%>">
+        <img class="small-news"src="<%= rails_blob_url(article.image) %>" width="250" height="120">
+      </a>
+    </div>
+    <div class="col-5">
+      <div class="row">
+        <div class="news-tidings__subtitle">
+          <h5 class="card-title"><b><a><%= link_to "#{article.title}", article_path(article.id) %></b></a></h5>
+        </div>
+      </div>
+      <div class="row">
+        <%= render partial: "comment_and_date",object: article, as: 'article'%>
+      </div>
+    </div>
+  </div>  
+  <%unless index==2%><div class="horisontal_gray_line "></div><%end%>
+<%end%> 

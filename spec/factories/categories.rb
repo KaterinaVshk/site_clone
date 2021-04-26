@@ -1,7 +1,6 @@
 FactoryBot.define do
-  sequence(:id) { |n| n -1 }
   factory :category do
     name { 'people' }
-    id
+    id { 1 }
   end
 end

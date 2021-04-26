@@ -1,7 +1,13 @@
 <div class="l-gradient-wrapper">
-      <%= render partial: "layouts/navigation"%>
-      <div class="g-middle">
-      <div class="g-middle-i">
-    </div>
+<%= render partial: "layouts/navigation"%>
+  <div class="g-middle">
+    <div class="g-middle-i">
+    <%= render partial: "layouts/navigation_menu"%>
+    <%if params[:category] == "all"%>
+    <%= render partial: "all_news"%>
+    <%else%>
+    <%= render partial: "news_to_category"%>
+    <%end%>
   </div>
+</div>
 </div>

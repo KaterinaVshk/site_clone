@@ -6,10 +6,10 @@
         <%= link_to "\u{2613}"  , root_path, class: "close" %>
       </div> 
       <div class="form-border">
-      <div class="col-md-11 mb-3 mx-4">
+      <div class="col-md-8 mb-3 mx-4">
       <%= render partial: "layouts/notification"%>  
       </div>  
-      <%= form_for @article,  url: '/articles',method: :post,  multsipart: true do |f| %>
+      <%= form_for @article,  url: "/articles/#{@article.id}",method: :put,  multsipart: true do |f| %>
           <div class="row justify-content-md-center">
             <div class="row justify-content-md-left">
               <div class="col-md-8 mb-3 mx-5">
@@ -23,13 +23,14 @@
                 <%end%>
               </div>
             </div>
+
             <div class="row">
               <div class="col-md-8 mb-3 mx-5">
                   <%= f.label :category, "Выберите категорию статьи:" %>
                 <div class="custom-control custom-radio">
                  <div class = "row">
                     <div class="col-md-3">
-                      <%= f.radio_button :category, "people", :checked => 'checked'%> Люди <br/> <br/>
+                      <%= f.radio_button :category, "people"%> Люди <br/> <br/>
                       <%= f.radio_button :category, "opinions" %> Мнения<br/> <br/>
                       <%= f.radio_button :category, "auto" %> Авто<br/><br/>
                     </div>
@@ -65,15 +66,13 @@
                 <%end%>
               </div>
             </div>
-
             <div class="row justify-content-md-center">
             <div class="col-md-11 mb-3 mx-5">
               <div class="actions">
-                <%= f.submit "Опубликовать", class: "auth-button auth-button_primary auth-button_middle auth-form__button auth-form__button_width_full" %>
+                <%= f.submit "Изменить", class: "auth-button auth-button_primary auth-button_middle auth-form__button auth-form__button_width_full" %>
               </div>
             </div>
           </div>
-
           </div>
         <%end%>
       </div>
