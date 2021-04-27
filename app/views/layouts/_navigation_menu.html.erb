@@ -1,0 +1,63 @@
+<div class="sticky-top">
+<div id="project-navigation" class="project-navigation project-navigation_overflow project-navigation_nocap project-navigation_scroll" 
+                        style="width: 1380px; height: 50px; left: 0px; top: 0px;">
+    <div class="project-navigation__flex">
+        <div class="project-navigation__part project-navigation__part_1">
+            <ul class="project-navigation__list project-navigation__list_primary">
+               <li class="project-navigation__item project-navigation__item_primary <%='project-navigation__item_active' if params[:category]=='people'%>">
+                  <a href="/news/people" class="project-navigation__link project-navigation__link_primary">
+                    <span class="project-navigation__text">
+                      <span class="project-navigation__sign">Люди</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="project-navigation__item project-navigation__item_primary <%='project-navigation__item_active' if params[:category]=='opinions'%>">
+                  <a href="/news/opinions" class="project-navigation__link project-navigation__link_primary">
+                    <span class="project-navigation__text">
+                      <span class="project-navigation__sign">Мнения</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="project-navigation__item project-navigation__item_primary <%='project-navigation__item_active' if params[:category]=='auto'%> ">
+                  <a href="/news/auto" class="project-navigation__link project-navigation__link_primary">
+                    <span class="project-navigation__text">
+                      <span class="project-navigation__sign">Авто</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="project-navigation__item project-navigation__item_primary <%='project-navigation__item_active' if params[:category]=='technologies'%> ">
+                  <a href="/news/technologies" class="project-navigation__link project-navigation__link_primary">
+                    <span class="project-navigation__text">
+                      <span class="project-navigation__sign">Технологии</span>
+                    </span>
+                  </a>
+                </li>
+                <li class="project-navigation__item project-navigation__item_primary <%='project-navigation__item_active' if params[:category]=='realt'%> ">
+                  <a href="/news/realt" class="project-navigation__link project-navigation__link_primary">
+                    <span class="project-navigation__text">
+                      <span class="project-navigation__sign">Недвижимость</span>
+                    </span>
+                  </a>
+                </li>
+                <%if current_user && current_user.type == "Admin"%>
+                  <li class="project-navigation__item project-navigation__item_primary ">
+                    <a href="<%=users_path %>" class="project-navigation__link project-navigation__link_primary">
+                      <span class="project-navigation__text">
+                        <span class="project-navigation__sign">Пользователи</span>
+                      </span>
+                    </a>
+                  </li>
+
+                  <li class="project-navigation__item project-navigation__item_primary ">
+                  <a href="/articles/new" class="project-navigation__link project-navigation__link_primary">
+                    <span class="project-navigation__text">
+                      <span class="project-navigation__sign">Добавить новость</span>
+                    </span>
+                  </a>
+                </li>
+                <%end%>  
+              </ul>
+            </div>
+    </div>
+</div>
+</div>

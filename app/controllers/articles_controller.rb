@@ -6,14 +6,17 @@ class ArticlesController < ApplicationController
     @articles = find_articles
   end
 
-  def new; end
+  def new
+    @article = Article.new
+  end
 
   def create
     @article = Article.new(article_params)
     if @article.save
       redirect_to(action: 'show', id: @article)
     else
-      redirect_to(action: 'new', notice: 'Данные заполнены неверно, попробуйте ещё раз')
+      flash[:alert] = 'Данные заполнены неверно, попробуйте ещё раз'
+      render('new')
     end
   end
 
@@ -22,11 +25,11 @@ class ArticlesController < ApplicationController
   def edit; end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update(article_params)
       redirect_to(action: 'show', id: @article)
     else
-      redirect_to(action: 'edit', id: @article, notice: 'Данные заполнены неверно, попробуйте ещё раз')
+      flash[:alert] = 'Данные заполнены неверно, попробуйте ещё раз'
+      redirect_to(action: 'edit')
     end
   end
 
@@ -42,14 +45,26 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :text, :image, :category_id)
+    parameters = params.require(:article).permit(:title, :text, :image)
+    parameters[:category_id] = Article::CATEGORY_MAP[params[:article][:category].to_sym] if params[:article][:category]
+    parameters[:admin_id] = current_user.id
+    parameters
   end
 
   def find_articles
     if Article::CATEGORY_MAP.include?(params[:category].to_sym)
-      Article.find_by(category_id: Article::CATEGORY_MAP[params[:category].to_sym])
+      Article.where(category_id: Article::CATEGORY_MAP[params[:category].to_sym]).order(created_at: :desc)
     else
-      Article.all
+      all_articles = Article.all.order(created_at: :desc).to_a
+      select_atricles_by_category(all_articles)
     end
+  end
+
+  def select_atricles_by_category(all_articles)
+    articles = []
+    Article::CATEGORY_MAP.each_pair do |_key, value|
+      articles << all_articles.select { |article| article.category_id == value }[0..9]
+    end
+    articles
   end
 end
