@@ -55,7 +55,16 @@ class ArticlesController < ApplicationController
     if Article::CATEGORY_MAP.include?(params[:category].to_sym)
       Article.where(category_id: Article::CATEGORY_MAP[params[:category].to_sym]).order(created_at: :desc)
     else
-      Article.all.order(created_at: :desc)
+      all_articles = Article.all.order(created_at: :desc).to_a
+      select_atricles_by_category(all_articles)
     end
+  end
+
+  def select_atricles_by_category(all_articles)
+    articles = []
+    Article::CATEGORY_MAP.each_pair do |_key, value|
+      articles << all_articles.select { |article| article.category_id == value }[0..9]
+    end
+    articles
   end
 end

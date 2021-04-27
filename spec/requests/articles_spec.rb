@@ -26,7 +26,7 @@ RSpec.describe('Articles', type: :request) do
 
     it 'recivies all the articles' do
       get root_path
-      expect(assigns(:articles)[0]).to(eq(Article.all[-1]))
+      expect(assigns(:articles).flatten.size).to(eq(Article.all.size))
     end
   end
 

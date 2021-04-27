@@ -1,7 +1,7 @@
 <div class="news-wrapper">
   <div class="container-x d-flex mb-3">
     <div class="row">
-      <% @articles.limit(12).each do |article| %> 
+      <% @articles.flatten.shuffle[0..11].each do |article| %> 
         <div class="col-sm-3 box2">  
           <div class="img-wrap">
             <div class="img-wrap-bright ">
@@ -26,7 +26,7 @@
       </div>
     </div>
   </div>
-  <% people = @articles.where(category_id: 1).limit(10) %> 
+  <% people = @articles[0] %> 
   <%if (people.size >=10 )%>
     <div class="container-x d-flex mb-3">
       <div class="row">
@@ -62,7 +62,7 @@
       </div>
     </div>
   </div>
-  <% opinions = @articles.where(category_id: 2).limit(4) %> 
+  <% opinions = @articles[1] %> 
   <%if (people.size >=4 )%>
     <div class="container-x d-flex mb-3">
       <div class="row">
@@ -97,7 +97,7 @@
       </div>
     </div>
   </div> 
-  <% auto = @articles.where(category_id: 3).limit(10) %> 
+  <% auto = @articles[2] %> 
   <%if (auto.size >=10 )%>
     <div class="container-x d-flex mb-3">
       <div class="row">
@@ -133,7 +133,7 @@
       </div>
     </div>
   </div> 
-  <% technologies = @articles.where(category_id: 4).limit(10) %> 
+  <% technologies = @articles[3]%> 
   <%if (technologies.size >=10 )%>
     <div class="container-x d-flex mb-3">
       <div class="row">
@@ -169,7 +169,7 @@
       </div>
     </div>
   </div> 
-  <% realt = @articles.where(category_id: 5).limit(10) %> 
+  <% realt = @articles[4] %> 
   <%if (realt.size >=10 )%>
     <div class="container-x d-flex mb-3">
       <div class="row">
