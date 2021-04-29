@@ -7,6 +7,7 @@ class Article < ApplicationRecord
   validates :text, presence:  { message: 'Напишите текст' }
   belongs_to :category
   belongs_to :admin
+  has_many :comments, as: :commentable, dependent: :delete_all
   MONTH_MAP = {
     1 => 'января',
     2 => 'февраля',

@@ -13,7 +13,7 @@
               </div></a>
               </div>
               <div class ="comments">
-                <a href="" class="button-style button-style_adscititious button-style_small news-header__button news-header__button_comments" id="news-header-comments-counter"> 0 </a>
+                <a href="" class="button-style button-style_adscititious button-style_small news-header__button news-header__button_comments" id="news-header-comments-counter"> <%= article.comments.count%></a>
               </div>
                 <h5><b><%= link_to "#{article.title}", article_path(article.id), class: "text-white"%></b></h5>
             </div>
