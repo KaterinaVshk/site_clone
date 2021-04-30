@@ -20,5 +20,6 @@ RSpec.describe(Article, type: :model) do
   describe 'associations' do
     it { is_expected.to(belong_to(:category)) }
     it { is_expected.to(belong_to(:admin)) }
+    it { is_expected.to(respond_to(:comments)) }
   end
 end

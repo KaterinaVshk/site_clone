@@ -12,7 +12,7 @@
               </a>
             </div>
             <a href="" class="tile-section"><%=article.category_russian_name%></a>
-            <a href="" class="b-tile-comments"><b><span>0</span></b></a>
+            <a href="" class="b-tile-comments"><b><span><%= article.comments.count%></span></b></a>
             <h5><b><%= link_to "#{article.title}", article_path(article.id), class: "text-white"%><span></b></h5>
           </div>
         </div>

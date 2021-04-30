@@ -1,0 +1,48 @@
+<ul>
+  <div class="row">
+    <div class="column">
+      <%= link_to image_tag("noavatar.png",class: "img-fluid rounded-circle"), 
+      controller: "users", action: "show", id: comment.user_id  %>
+    </div>
+    <div class="column2">
+      <div class="row">
+        <b> <%=comment.user_id  %></b> 
+      </div>
+      <div class="row">
+        <p><%= comment.content %></p> 
+      </div>
+
+      <div class="row">
+      <div class="response_comment">
+        <% id_comment = comment.id %>
+        <p onclick="stateChange(<%= id_comment %>)">Ответить</p>
+      </div>
+      </div>
+    </div>        
+  </div>
+
+  <div id = <%= id_comment %> style="display:none">
+    <div class="row mb-4">
+      <div class="col-md-6" style="background-clor:red">
+      <%= form_for :comment, url: "/comments/#{comment.id}/comments/", method: :post do |f| %>
+      <%= f.hidden_field :article_id,  value: @article.id %>
+      <%= f.text_area :content,class: "form-control" , placeholder: "Ответ для #{comment.user_id}" %><br/>
+      <div class="col-md-4">
+        <%= f.submit "Высказаться" , :class => "auth-button auth-button_primary auth-button_middle auth-form__button auth-form__button_width_full" %>
+      </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'comment', collection: comment.comments %>
+</ul>
+
+<script>
+function stateChange(id_comment) {
+  var obj = document.getElementById(id_comment);
+
+  obj.style.display = 
+      (obj.style.display == "none" ?
+      "block" : "none");
+}
+</script>

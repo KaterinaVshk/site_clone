@@ -334,3 +334,38 @@ a.footer-button {
   background: no-repeat 50% 50%;
   background-size: cover;
 }
+#div1{
+  display: none;
+}
+.discussion h2 {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-family: 'Open Sans Condensed',sans-serif;
+  text-transform: uppercase;
+}
+.comment-form-background{
+  background-color: #e6e6e6;
+  width: 927px;
+}
+.comment-form{
+  padding-left: 30px;
+}
+.comment-form .column{
+  width: 80px;
+}
+.comment-form .column2{
+  width: 630px;
+}
+.column{
+  width: 70px;
+}
+.column2{
+  width: 600px;
+}
+.comments{
+  left: 30px;
+}
+.response_comment p{
+  font-size: 10pt;
+  color: rgb(80, 114, 175);
+}
