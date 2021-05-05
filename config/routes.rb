@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/users/:id' , to:'users#show'
   get '/news/:category', to:'articles#index'
   root :to => "articles#index", :category => 'all'
+  post '/preferences' , to: 'preferences#create', as: 'preference_create'
   resources :articles, only: [:new, :create, :show, :edit, :update, :destroy] do
     resources :comments
   end
