@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authentication, only: %i[new create]
   before_action :check_admin, only: %i[index make_admin cancel_admin_rights]
+  before_action :set_user, only: %i[show edit update make_admin cancel_admin_rights]
   def index
     @users = User.all
   end
@@ -19,12 +20,23 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find(params[:id])
+  def show; end
+
+  def edit
+    redirect_to(user_path(@user)) unless current_user == @user
+  end
+
+  def update
+    if @user.update(update_user_params)
+      flash[:notice] = 'Профиль успешно обновлен'
+      redirect_to(user_path(@user))
+    else
+      flash[:alert] = 'Не удалось обновить профиль'
+      render('edit')
+    end
   end
 
   def make_admin
-    @user = User.find(params[:id])
     if @user.update(type: 'Admin')
       flash[:notice] = 'Успешно добавлен новый администратор'
     else
@@ -34,7 +46,6 @@ class UsersController < ApplicationController
   end
 
   def cancel_admin_rights
-    @user = User.find(params[:id])
     if @user.update(type: 'User')
       flash[:notice] = 'Администратор успешно удален'
     else
@@ -45,7 +56,16 @@ class UsersController < ApplicationController
 
   private
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
+  end
+
+  def update_user_params
+    return params.require(:user).permit(:nickname, :first_name, :last_name, :birthday, :city, :photo) if @user.type == 'User'
+    return params.require(:admin).permit(:nickname, :first_name, :last_name, :birthday, :city, :photo) if @user.type == 'Admin'
   end
 end

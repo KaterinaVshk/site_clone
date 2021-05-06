@@ -1,0 +1,98 @@
+<div class="bg-white">
+  <div class="auth-content">
+    <div class="container">
+    <div class="col-md-6 offset-md-3">
+      <div class="auth-form__preview mt-4 mb-3"><a href="<%= root_path%>" class="auth-form__image auth-form__image_logo"></a>
+        <%= link_to "\u{2613}"  , user_path(@user.id), class: "close" %>
+      </div> 
+      <div class="form-border">
+      <%= form_for @user, url: "/users/#{@user.id}",method: :put,  multsipart: true do |f| %>
+              <div class="row justify-content-md-left">
+                <div class="col-md-8 mb-3 mx-5">
+                  <%= f.label :photo, "Прикрепите фото для аватарки:" %>
+                  <%= f.file_field :photo  %> 
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10 mb-3 mx-5">
+              <% invalid = @user.errors.include?(:nickname) %>  
+                <%= f.label :nickname, "Ник:" %>
+                <%= f.text_field :nickname, class: "form-control #{'is-invalid' if invalid}" %>
+                <% if invalid %>
+                  <div class="invalid-feedback d-block">
+                    <% if @user[:nickname].size < 3 ||  @user[:nickname].size > 25 %>
+                      <p><big> <%=  @user.errors.messages[:nickname][1] %></big></p> 
+                      <%else%>
+                      <p><big> <%=  @user.errors.messages[:nickname][0] %></big></p> 
+                    <%end%>
+                  </div>
+                <%end%>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10 mb-3 mx-5"
+              <% invalid = @user.errors.include?(:first_name) %>  
+                <%= f.label :first_name, "Имя:" %>
+                <%= f.text_field :first_name, class: "form-control #{'is-invalid' if invalid}" %>
+                <% if invalid %>  
+                <div class="invalid-feedback d-block">         
+                  <p><big> <%= @user.errors.messages[:first_name][0] %></big></p> 
+                </div>
+                <%end%>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10 mb-3 mx-5"> 
+              <% invalid = @user.errors.include?(:last_name) %>  
+                <%= f.label :last_name, "Фамилия:" %>
+                <%= f.text_field :last_name, class: "form-control #{'is-invalid' if invalid}" %>
+                <% if invalid %>  
+                <div class="invalid-feedback d-block">         
+                  <p><big> <%= @user.errors.messages[:last_name][0] %></big></p> 
+                </div>
+                <%end%>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10 mb-3 mx-5">   
+                <%= f.label :birthday, "Дата рождения:" %>
+                <div class="form-inline">
+                  <%= f.date_select :birthday, {order: [:day, :month,  :year], 
+                  date_separator: "/",
+                  prompt: { day: 'День', month: 'Месяц', year: 'Год' }, 
+                  start_year: Date.today.year - 18, end_year: Date.today.year - 125}, :class => "form-control date-select "  %>
+                </div>
+                <% if @user.errors.include?(:birthday) %>  
+                <div class="invalid-feedback d-block">         
+                  <p><big> <%=  @user.errors.messages[:birthday][0] %></big></p> 
+                </div>
+              <%end%>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10 mb-3 mx-5"> 
+              <% invalid = @user.errors.include?(:city) %>  
+                <%= f.label :city, "Из города:" %>
+                <%= f.text_field :city, class: "form-control #{'is-invalid' if invalid}" %>
+                <% if invalid %>  
+                <div class="invalid-feedback d-block">         
+                  <p><big> <%= @user.errors.messages[:city][0] %></big></p> 
+                </div>
+                <%end%>
+              </div>
+            </div>
+            <div class="row justify-content-md-center">
+            <div class="col-md-6 mb-3 mx-5">
+              <div class="actions">
+                <%= f.submit "Изменить", class: "auth-button auth-button_primary auth-button_middle auth-form__button auth-form__button_width_full" %>
+              </div>
+            </div>
+          </div>
+          </div>
+        <%end%>
+      </div>
+    </div>
+    </div>  
+    </div>  
+  </div>
+</div>

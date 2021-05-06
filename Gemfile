@@ -29,6 +29,7 @@ gem 'pry'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap', '~> 5.0.0.beta2'
+gem 'date_validator', '~> 0.10.0'
 gem 'jquery-rails'
 
 group :development, :test do
