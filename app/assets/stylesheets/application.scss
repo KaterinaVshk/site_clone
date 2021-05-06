@@ -360,7 +360,7 @@ a.footer-button {
   width: 70px;
 }
 .column2{
-  width: 600px;
+  width: 800px;
 }
 .comments{
   left: 30px;
@@ -368,4 +368,12 @@ a.footer-button {
 .response_comment p{
   font-size: 10pt;
   color: rgb(80, 114, 175);
+}
+.like-count{
+  color: green; 
+  font-size: 11pt;
+}
+.dislike-count{
+  color: rgb(255, 0, 0);
+  font-size: 11pt;
 }

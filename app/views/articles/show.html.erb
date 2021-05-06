@@ -1,6 +1,7 @@
 <div class="l-gradient-wrapper">
 <%= render partial: "layouts/navigation"%>
-  <div class="g-middle">
+<% @user = current_user %>
+<div class="g-middle">
     <div class="g-middle-i">
     <%= render partial: "layouts/navigation_menu"%>
     <div class="news-wrapper">
@@ -40,7 +41,7 @@
         </div>
         <div class="row">
         <div class="col-md-6 offset-md-3">
-          <%if current_user && current_user.type == "Admin"%>
+          <% if @user && @user.type == "Admin"%>
             <div class="row mb-5">
               <%= button_to "Редактировать статью", {:controller => :articles, :action => 'edit', :id => @article.id }, 
               :method => :get , :class => "auth-button auth-button_primary auth-button_middle auth-form__button auth-form__button_width_full" %>
@@ -55,7 +56,7 @@
             </div>
           </div>
         </div>
-        <% if current_user%>
+        <% if @user%>
           <div class = "row">
             <div class="col-md-7 offset-md-1 mb-3">
               <div class="horisontal_gray_line" style="padding-left: 25px"></div>
@@ -66,17 +67,15 @@
               <div class="col-md-10 offset-md-1 my-3">
                 <div class="comment-form">
                   <div class="row">
-                
                     <div class="column">
                       <%= link_to image_tag("noavatar.png",class: "img-fluid rounded-circle"), 
-                      controller: "users", action: "show", id: current_user.id %>
+                      controller: "users", action: "show", id: @user.id %>
                     </div>
-                  
                     <div class="column2">
                       <%= form_for :comment, url: "/articles/#{@article.id}/comments/", method: :post do |f| %>
                       <%  invalid = alert if alert %>
                         <%= f.hidden_field :article_id,  value: @article.id %>
-                        <%= f.text_area :content,class: "form-control #{'is-invalid' if invalid}" , placeholder: "Ваше мнение, #{current_user.id}?" %><br/>
+                        <%= f.text_area :content,class: "form-control #{'is-invalid' if invalid}" , placeholder: "Ваше мнение, #{@user.id}?" %><br/>
                           
                     <% if alert%>
                       <div class="invalid-feedback d-block">
@@ -88,7 +87,6 @@
                         </div>
                       <% end %>
                     </div>
-                  
                   </div>
                 </div>
               </div>
@@ -96,8 +94,10 @@
           </div>
         <%end%>
         <div class = "row">
-            <div class="col-md-10 offset-md-1 my-3">
-              <%= render partial: "comment", collection: @article.comments %>
+            <div class="col-md-8 offset-md-1 my-3">
+              <% @article.comments.each do |comment| %>
+                <%= render partial: "comment", object: comment %> 
+             <% end %>
             </div>
         </div>
         <div class="row">
