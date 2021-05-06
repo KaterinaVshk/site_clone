@@ -1,10 +1,8 @@
-<div id="current_like">
-    <div class="row">
-    <div class="col-md-1">
-      <%= link_to image_tag("noavatar.png",class: "img-fluid rounded-circle"), 
-      controller: "users", action: "show", id: comment.user_id  %>
-    </div>
-    <div class="col-md-11">
+
+<ul>
+  <div class="row">
+    <div class="column">
+    <div class="column2">
       <div class="row">
         <div class="col-md-8">
           <b> <%=comment.user_id  %></b>

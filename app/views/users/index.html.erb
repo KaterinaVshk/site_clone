@@ -14,9 +14,12 @@
       <% @users.each do |user| %>
         <div class="row justify-content-md-center">
           <div class="col-1 mb-3">
-            <%= link_to image_tag("avatar.png",class: "img-fluid rounded-circle"), controller: "users", action: "show", id: user.id %>
-          </div>          
-          
+            <%  if user.photo.attached?%>
+              <%= link_to image_tag(user.photo, class: "rounded-circle" ,:alt => "Cinque Terre", size: "100" ), controller: "users", action: "show", id: user.id %>
+            <% else %>
+              <%= link_to image_tag("avatar.png",class: "img-fluid rounded-circle"), controller: "users", action: "show", id: user.id %>
+            <% end %>
+          </div>                  
           <div class="col-4 mb-1">
             <div class="row">
               <h5> <%= "id: #{user.id}" %></h5>

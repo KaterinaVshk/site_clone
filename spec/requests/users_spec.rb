@@ -110,4 +110,62 @@ RSpec.describe('Users', type: :request) do
       end
     end
   end
+
+  describe '#update' do
+    context 'with valid attributes' do
+      it 'update user and redirect to users path' do
+        post '/login', params: user_params
+        patch "/users/#{user1.id}", params: { user: { nickname: "nick", first_name: "name" , birthday: "08/04/1999" } }
+        expect(response).to(
+          redirect_to(
+            action: :show,
+            id: user1.id
+          )
+        )
+      end
+
+      it 'attach photo and redirect to users path' do
+        post '/login', params: user_params
+        patch "/users/#{user1.id}", params: { user: { image: Rack::Test::UploadedFile.new(Rails.root.join('spec/factories/images/dog.jpeg'), 'image/jpeg') } }
+        expect(response).to(
+          redirect_to(
+            action: :show,
+            id: user1.id
+          )
+        )
+      end
+
+      it 'update admin and redirect to users path' do
+        post '/login', params: admin_params
+        patch "/users/#{admin.id}", params: { admin: { nickname: "nick", first_name: "name" , birthday: "08/04/1999" } }
+        expect(response).to(
+          redirect_to(
+            action: :show,
+            id: admin.id
+          )
+        )
+      end
+      
+    end
+
+    context 'with invalid attributes' do
+      it "don\'t update invalid date " do
+        post '/login', params: user_params
+        patch "/users/#{user1.id}", params: { user: { nickname: "nick", first_name: "name" , birthday: "08/04/2021" } }
+        expect(flash[:alert]).to(eq('Не удалось обновить профиль'))
+      end
+
+      it 'don\'t update unformatted date' do
+        post '/login', params: user_params
+        patch "/users/#{user1.id}", params: { user: { nickname: "nick", first_name: "name" , birthday: "dsv" } }
+        expect(flash[:alert]).to(eq('Не удалось обновить профиль'))
+      end
+
+      it 'don\'t update unpermitted id parameter' do
+        post '/login', params: user_params
+        patch "/users/#{user1.id}", params: { user: { id: 300} }
+        expect(user1.id).not_to(eq(300))
+      end
+    end
+  end
 end

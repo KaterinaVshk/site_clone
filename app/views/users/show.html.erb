@@ -8,12 +8,17 @@
       <div class="row justify-content-md-center">
         <div class="col-1 mb-2 ml-2">
           <div class="profile-avatar">
+          <%  if @user.photo.attached?%>
+            <%= image_tag(@user.photo, class: "rounded-circle" ,:alt => "Cinque Terre", size: "110")%>
+          <% else %>
             <%= image_tag("avatar.png" ,class: "img-fluid rounded-circle") %> 
+          <% end %>
           </div>          
         </div>
         <div class="col-8 mb-1">
           <div class="row">
-            <h5> <%= "#{@user.id}" %></h5>
+            <h5><%= @user.nickname %></h5>
+            <h5> <%= @user.id if @user.nickname.blank? %> </h5>
           </div>
           <div class="row">
             <p class="text-muted"> <%= "Onliner ID: #{@user.id}" %></p> 
@@ -25,7 +30,6 @@
           </div>  
         <%end%>
       </div>
-      
       <div class="col-12 mb-2 ml-2 mt-3">
         <h5> Личные данные</h5>
         <table class="table">
@@ -35,13 +39,15 @@
                 <div class="col-1">
                   <%= image_tag("profile-icon.png" , size:"30",class: "img-fluid rounded-circle") %>        
                 </div>
-
                 <div class="col col-lg-2 my-2">    
                   <div class="row mb-2">
                    <h6> Ник </h6>
                   </div>
                   <div class="row mb-2">
-                    <h6> ФИО </h6>
+                    <h6> Имя </h6>
+                  </div>
+                  <div class="row mb-2">
+                    <h6> Фамилия </h6>
                   </div>
                   <div class="row mb-2">
                     <h6> Дата рождения </h6>
@@ -50,26 +56,45 @@
                     <h6> Из города </h6>
                   </div>
                 </div>
-
                 <div class="col auto"> 
-                  <div class="row ">
+                  <div class="row mb-2 ">
                     <div class ="col col-lg-4">  
-                      <h6 style="color:black;"> <%= "#{@user.id}" %> </h6>
+                    <h6 style="color:black;"><%= @user.nickname %></h6>
+                      <h6 style="color:black;"> <%= @user.id if @user.nickname.blank? %> </h6>
                     </div>
                     <%if current_user.id == @user.id%>
                       <div class ="col auto">  
-                        <h6><%=link_to "Изменить"%></h6>
+                        <h6><%=link_to "Изменить", edit_user_path%></h6>
                       </div>
                     <%end%>
                   </div>
-                  <div class="row">
-                    <h6>—</h6>
+                  <div class="row mb-2">
+                    <%if @user.first_name.blank?%>
+                      <h6><%= "—" %></h6>
+                    <% else %>
+                      <h6 style="color:black;"><%= @user.first_name %></h6>
+                    <%end%>
                   </div>
-                  <div class="row">
-                    <h6>—</h6>
+                  <div class="row mb-2">
+                    <%if @user.last_name.blank?%>
+                      <h6><%= "—" %></h6>
+                    <% else %>
+                      <h6 style="color:black;" ><%= @user.last_name %></h6>
+                    <%end%>
                   </div>
-                  <div class="row">
-                    <h6>—</h6>
+                  <div class="row mb-2">
+                    <%if @user.birthday.blank?%>
+                      <h6><%= "—" %></h6>
+                    <% else %>
+                      <h6 style="color:black;"><%= @user.birthday.strftime("%m/%d/%Y")%></h6>
+                    <%end%>
+                  </div>
+                  <div class="row mb-2">
+                    <%if @user.city.blank?%>
+                      <h6><%= "—" %></h6>
+                    <% else %>
+                      <h6 style="color:black;" ><%= @user.city %></h6>
+                    <%end%>
                   </div>
                 </div>
 
@@ -78,7 +103,6 @@
           </th></tr>
         </table>
       </div>
-
       <div class="col-12 mb-2 ml-2 mt-3">
       <div class="profile-form-text"> 
       <div class="row justify-content-md-center">

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
-  get 'users', to: 'users#index'
+  resources :users, only: [:index, :edit, :update] 
   put '/make_admin/:id' , to:'users#make_admin'
   put '/cancel_admin/:id' , to:'users#cancel_admin_rights'
   get '/users/:id' , to:'users#show'

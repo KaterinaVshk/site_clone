@@ -23,5 +23,22 @@ RSpec.describe(User, type: :model) do
         expect(subject).to(validate_length_of(:password).is_at_least(8).with_message('Пароль должен быть от 8 до 64 символов'))
       }
     end
+
+    describe '#nickname' do
+      it { is_expected.to(validate_uniqueness_of(:nickname).with_message('Такой ник уже занят')) }
+      it { is_expected.to(validate_length_of(:nickname).is_at_most(25).with_message('Ник может содержать до 25 символов'))}
+    end
+
+    describe '#first_name' do
+      it { is_expected.to(validate_length_of(:first_name).is_at_most(50).with_message('Имя может содержать до 50 символов'))}
+    end
+
+    describe '#last_name' do
+      it { is_expected.to(validate_length_of(:last_name).is_at_most(50).with_message('Фамилия может содержать до 50 символов'))}
+    end
+
+    describe '#city' do
+      it { is_expected.to(validate_length_of(:city).is_at_most(40).with_message('Название города может содержать до 40 символов'))}
+    end
   end
 end
