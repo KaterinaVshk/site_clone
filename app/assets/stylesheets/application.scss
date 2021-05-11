@@ -365,6 +365,20 @@ a.footer-button {
 .comments{
   left: 30px;
 }
+.navigation-arrow {
+  content: '\2039';
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: -9px;
+  margin-top: -6px;
+  line-height: 1;
+  color: rgba(0,0,0,.4);
+  text-decoration: none;
+  transform: rotate(
+270deg
+);
+}
 .response_comment p{
   font-size: 10pt;
   color: rgb(80, 114, 175);
@@ -379,4 +393,28 @@ a.footer-button {
 }
 .empty-place {
  height: 500px;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+  display: none;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0 0 0 7px;
+  font-size: 1rem;
+  color: #212529;
+  background-color: #3e4753;
+  text-align: left;
+  list-style: none;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.g-bottom-i {
+  min-width: 1000px;
+  max-width: 1380px;
+  margin: 0 auto;
+  background: #fff;
+  position: relative;
+  z-index: 11;
 }
