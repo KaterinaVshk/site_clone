@@ -1,0 +1,27 @@
+<div class="container">
+        <% @articles.each do |article| %> 
+          <div class="row mb-3">
+            <div class="col-3">
+              <a href="<%= article_path(article.id)%>">
+                <img class="small-news"src="<%= rails_blob_url(article.image) %>" width="250" height="120">
+              </a>
+            </div>
+            <div class="col-9">
+              <div class="row">
+                <div class="news-tidings__subtitle">
+                  <h5 class="card-title"><b><a><%= link_to "#{article.title}", article_path(article.id) %></b></a></h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="news-tidings__speech news-helpers_hide_mobile-small">
+                  <%= simple_format(article.text.truncate(200)) %>
+                </div>
+              </div>
+              <div class="row">
+                <%= render partial: "comment_and_date",object: article, as: 'article'%>
+              </div>
+            </div>
+          </div>  
+        <%end%>
+      </div>
+      

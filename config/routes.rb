@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   resources :comments do
     resources :comments
   end
+  get '/search' => 'articles#search', :as => 'search_article'
 end

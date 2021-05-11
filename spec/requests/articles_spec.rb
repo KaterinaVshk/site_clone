@@ -123,4 +123,25 @@ RSpec.describe('Articles', type: :request) do
       expect(response).to(redirect_to(root_path))
     end
   end
+
+  describe '#search' do
+    it 'receives all articles' do
+      get "/search", params: { search: 'MyString'}
+      expect(assigns(:articles).size).to(eq(Article.all.size))
+    end
+
+    it 'receives article with certain title' do
+      article2.update(title: 'New title')
+      get "/search", params: { search: article2.title}
+      expect(assigns(:articles).size).to(eq(1))
+    end
+
+    it 'doesn\'t find articles' do
+      title = 'Not exist such article'
+      get "/search", params: { search: title }
+      expect(assigns(:articles).size).to(eq(0))
+      expect(flash[:error]).to(eq('Ничего не найдено'))
+    end
+
+  end
 end

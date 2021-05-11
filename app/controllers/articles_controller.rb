@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  skip_before_action :authentication, only: %i[index show]
+  skip_before_action :authentication, only: %i[index show search]
   before_action :check_admin, only: %i[new create edit update destroy]
   before_action :set_article, only: %i[show edit update destroy]
   def index
@@ -36,6 +36,11 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy!
     redirect_to(root_path)
+  end
+
+  def search
+    @articles = Article.where('title ILIKE ? ', "%#{params[:search]}%")
+    flash[:error] = 'Ничего не найдено' if @articles.empty?
   end
 
   private
