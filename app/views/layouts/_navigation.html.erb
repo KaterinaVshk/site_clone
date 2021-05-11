@@ -14,12 +14,116 @@
             </a>
           </li>
           <li class="b-main-navigation__item b-main-navigation__item_arrow">
-              <a href="" class="b-main-navigation__link">
-                  <span class="b-main-navigation__text">Новости</span>
+            <div class="dropdown">
+              <a href="<%= root_path%>" class="b-main-navigation__link "  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false>
+              <a href="" class="dropdown-toggle" data-toggle="dropdown">Новости <span class="caret"></span></a>
               </a>
+              <ul class="dropdown-menu" role="menu">
+              <div class = "container">
+              <div class ="row my-4">
+              <div class="g-top-i">
+                <div class="b-main-navigation__dropdown-wrapper">
+                  <div class="b-main-navigation__dropdown-grid">
+                    <div class="b-main-navigation__dropdown-column b-main-navigation__dropdown-column_25">
+                      <div class="b-main-navigation__dropdown-title">
+                        <a href="/news/people" class="b-main-navigation__dropdown-title-link">Люди</a>
+                      </div>
+                      
+                      <ul class="b-main-navigation__dropdown-news-list" style="padding-left: 0;">
+                      <% @articles_navbar[0][0..2].each do |article|%>
+                        <li class="b-main-navigation__dropdown-news-item">
+                          <a href="<%= article_path(article.id)%>" class="b-main-navigation__dropdown-news-preview">
+                          <img  src="<%= rails_blob_url(article.image) %>"width="90" height="60">
+                          </a>
+                          <div class="b-main-navigation__dropdown-news-description" style="overflow-wrap: break-word;">
+                            <a href="<%= article_path(article.id)%>" class="b-main-navigation__dropdown-news-link"><%= article.title%></a>
+                          </div>
+                        </li>
+                      <% end %>
+                      </ul>
+                      <div class="b-main-navigation__dropdown-control">
+                          <a href="/news/people" class="b-main-navigation__dropdown-button">
+                                          Перейти в раздел
+                                  </a>
+                      </div>
+                    </div>
+                      <div class="b-main-navigation__dropdown-column b-main-navigation__dropdown-column_25">
+                        <div class="b-main-navigation__dropdown-title">
+                          <a href="/news/auto" class="b-main-navigation__dropdown-title-link">Авто</a>
+                        </div>
+                        <ul class="b-main-navigation__dropdown-news-list" style="padding-left: 0;">
+                        <% @articles_navbar[2][0..2].each do |article|%>
+                          <li class="b-main-navigation__dropdown-news-item">
+                            <a href="<%= article_path(article.id)%>" class="b-main-navigation__dropdown-news-preview">
+                            <img  src="<%= rails_blob_url(article.image) %>"width="90" height="60">
+                            </a>
+                            <div class="b-main-navigation__dropdown-news-description" style="overflow-wrap: break-word;">
+                              <a href="<%= article_path(article.id)%>" class="b-main-navigation__dropdown-news-link"><%= article.title%></a>
+                            </div>
+                          </li>
+                          <% end %>
+                        </ul>
+                        <div class="b-main-navigation__dropdown-control">
+                          <a href="/news/auto" class="b-main-navigation__dropdown-button">
+                            Перейти в раздел
+                          </a>
+                        </div>  
+                      </div>
+                    <div class="b-main-navigation__dropdown-column b-main-navigation__dropdown-column_25">
+                      <div class="b-main-navigation__dropdown-title">
+                        <a href="/news/technologies" class="b-main-navigation__dropdown-title-link">Технологии</a>
+                      </div>
+                      <ul class="b-main-navigation__dropdown-news-list" style="padding-left: 0;">
+                      <% @articles_navbar[3][0..2].each do |article|%>
+                        <li class="b-main-navigation__dropdown-news-item">
+                          <a href="<%= article_path(article.id)%>" class="b-main-navigation__dropdown-news-preview">
+                          <img  src="<%= rails_blob_url(article.image) %>"width="90" height="60">
+                
+                          </a>
+                          <div class="b-main-navigation__dropdown-news-description" style="overflow-wrap: break-word;">
+                            <a href="<%= article_path(article.id)%>" class="b-main-navigation__dropdown-news-link"><%= article.title%></a>
+                          </div>
+                        </li>
+                        <%end%>
+                      </ul>
+                    <div class="b-main-navigation__dropdown-control">
+                      <a href="/news/technologies" class="b-main-navigation__dropdown-button">
+                        Перейти в раздел
+                      </a>
+                    </div>
+                  </div>
+                  <div class="b-main-navigation__dropdown-column b-main-navigation__dropdown-column_25">
+                    <div class="b-main-navigation__dropdown-title">
+                      <a href="/news/realt" class="b-main-navigation__dropdown-title-link">Недвижимость</a>
+                    </div>
+                     <ul class="b-main-navigation__dropdown-news-list" style="padding-left: 0;">
+                     <% @articles_navbar[4][0..2].each do |article|%>
+                      <li class="b-main-navigation__dropdown-news-item">
+                        <a href="<%= article_path(article.id)%>" class="b-main-navigation__dropdown-news-preview">
+                        <img  src="<%= rails_blob_url(article.image) %>"width="90" height="60">
+                        </a>
+                        <div class="b-main-navigation__dropdown-news-description" style="overflow-wrap: break-word;">
+                            <a href="<%= article_path(article.id)%>" class="b-main-navigation__dropdown-news-link"><%= article.title%></a>
+                        </div>
+                      </li>
+                      <%end%>
+                    </ul>
+                    <div class="b-main-navigation__dropdown-control">
+                      <a href="/news/realt" class="b-main-navigation__dropdown-button">Перейти в раздел</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              </div>
+            </div>
+
+          </ul>
+          </div>
+            
           </li>
           <li class="b-main-navigation__item b-main-navigation__item_arrow">
-            <a href="https://auto.onliner.by/2021/02/11/snova-razygryvaem-prizy-v-avtobaraxolke-s-mastercard" target="_blank" class="b-main-navigation__advert b-main-navigation__advert_additional">
+            <a href="" target="_blank" class="b-main-navigation__advert b-main-navigation__advert_additional">
               <div class="b-main-navigation__bubble b-main-navigation__bubble_additional">
                 Выиграйте iPhone 12
               </div>
