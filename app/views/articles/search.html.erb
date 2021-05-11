@@ -1,0 +1,17 @@
+<div class="l-gradient-wrapper">
+<%= render partial: "layouts/navigation"%>
+  <div class="g-middle">
+    <div class="g-middle-i">
+      <%= render partial: "layouts/navigation_menu"%>
+      <div id="search-results">
+        <%= render partial: 'search_results' %>
+      </div>
+    <% if @articles.empty? %>
+      <h4 align="center"><%= flash[:error]%></h4>
+    <% end %>
+    <% if @articles.size < 5 %>
+      <div class="empty-place"> </div>
+    <%end%>
+    </div>
+  </div>
+</div>
