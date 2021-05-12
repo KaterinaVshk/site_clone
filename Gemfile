@@ -30,8 +30,10 @@ gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap', '~> 5.0.0.beta2'
 gem 'date_validator', '~> 0.10.0'
+gem 'faker', '~> 1.6', '>= 1.6.3'
 gem 'jquery-rails'
 gem 'popper_js', '~> 2.9.2'
+gem 'will_paginate', '~> 3.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

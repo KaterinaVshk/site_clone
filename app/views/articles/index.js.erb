@@ -1,0 +1,2 @@
+$("#articles").append('<%= escape_javascript(render 'articles/article_more', collection: @articles)%>');
+$("#more_articles").html('<%= escape_javascript(link_to "Загрузить ещё", articles_by_category_path(page: @articles.next_page), remote: true,  class: "button-style button-style_expletive button-style_big news-more__button js-show-more-news text-secondary") if @articles.next_page %>');

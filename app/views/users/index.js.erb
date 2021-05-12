@@ -1,0 +1,2 @@
+$("#users").append('<%= escape_javascript(render partial: 'users/user', collection: @users)%>');
+$("#more_users").html('<%= escape_javascript(link_to "Загрузить ещё", users_path(page: @users.next_page), remote: true, class: "button-style button-style_expletive button-style_big news-more__button js-show-more-news text-secondary") if @users.next_page %>');

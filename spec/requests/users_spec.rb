@@ -10,7 +10,7 @@ RSpec.describe('Users', type: :request) do
     it 'receives all users when admin' do
       post '/login', params: admin_params
       get '/users'
-      expect(assigns(:users)).to(eq(User.all))
+      expect(assigns(:users).size).to(eq(User.all.size))
     end
 
     it 'redirect to login path if not admin' do
