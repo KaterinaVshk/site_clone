@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :check_admin, only: %i[index make_admin cancel_admin_rights]
   before_action :set_user, only: %i[show edit update make_admin cancel_admin_rights]
   def index
-    @users = User.paginate(page: params[:page], per_page: 10)
+    @users = User.paginate(page: params[:page], per_page: User::PER_PAGE)
     respond_to do |format|
       format.html
       format.js

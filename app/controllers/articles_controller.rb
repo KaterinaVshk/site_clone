@@ -64,7 +64,7 @@ class ArticlesController < ApplicationController
     if Article::CATEGORY_MAP.include?(params[:category].to_sym)
       Article.where(category_id: Article::CATEGORY_MAP[params[:category].to_sym]).order(created_at: :desc).paginate(
         page: params[:page],
-        per_page: 14
+        per_page: Article::PER_PAGE
       )
     else
       select_atricles_by_category

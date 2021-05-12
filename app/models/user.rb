@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   VALID_EMAIL = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/.freeze
+  PER_PAGE = 10
   has_secure_password
   validates :email,
             uniqueness: { message: 'Такой пользователь уже зарегистрирован' },

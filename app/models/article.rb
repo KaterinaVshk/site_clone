@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   CATEGORY_MAP = { people: 1, opinions: 2, auto: 3, technologies: 4, realt: 5 }.freeze
   RUSSION_CATEGORY_MAP = { 1 => 'Люди', 2 => 'Мнения', 3 => 'Авто', 4 => 'Технологии', 5 => 'Недвижимость' }.freeze
+  PER_PAGE = 14
   has_one_attached :image
   validates :title, presence: { message: 'Укажите название' }
   validates :image, presence: { message: 'Прикрепите фото/картинку' }
