@@ -1,7 +1,8 @@
 
-<ul>
-  <div class="row">
-    <div class="column">
+<div class="row">
+  <div class="column">
+  <%=  image_tag("noavatar.png",class: "img-fluid rounded-circle")%>
+  </div>
     <div class="column2">
       <div class="row">
         <div class="col-md-8">
@@ -68,7 +69,6 @@
         </div>
       </div>
     </div>        
-  </div>
   <div id = <%= id_comment %> style="display:none">
     <div class="row mb-4">
       <div class="col-md-6 offset-md-1 " style="background-clor:red">
@@ -82,13 +82,14 @@
       </div>
     </div>
   </div>
-<% if comment.commentable_type == "Article" %>
-<ul><%= render partial: 'comment', collection: comment.comments %></ul>  
-<% else %>
-<%= render partial: 'comment', collection: comment.comments %> 
-<% end %>
 
 </div>
+
+  <% if comment.commentable_type == "Article" %>
+    <ul><%= render partial: 'comment', collection: comment.comments %></ul>  
+  <% else %>
+  <%= render partial: 'comment', collection: comment.comments %> 
+  <% end %>
 <script>
 function stateChange(id_comment) {
   var obj = document.getElementById(id_comment);
