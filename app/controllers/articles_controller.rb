@@ -4,6 +4,10 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
   def index
     @articles = find_articles
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
@@ -58,14 +62,17 @@ class ArticlesController < ApplicationController
 
   def find_articles
     if Article::CATEGORY_MAP.include?(params[:category].to_sym)
-      Article.where(category_id: Article::CATEGORY_MAP[params[:category].to_sym]).order(created_at: :desc)
+      Article.where(category_id: Article::CATEGORY_MAP[params[:category].to_sym]).order(created_at: :desc).paginate(
+        page: params[:page],
+        per_page: Article::PER_PAGE
+      )
     else
-      all_articles = Article.all.order(created_at: :desc).to_a
-      select_atricles_by_category(all_articles)
+      select_atricles_by_category
     end
   end
 
-  def select_atricles_by_category(all_articles)
+  def select_atricles_by_category
+    all_articles = Article.all.order(created_at: :desc).to_a
     articles = []
     Article::CATEGORY_MAP.each_pair do |_key, value|
       articles << all_articles.select { |article| article.category_id == value }[0..9]

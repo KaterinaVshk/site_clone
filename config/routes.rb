@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   put '/make_admin/:id' , to:'users#make_admin'
   put '/cancel_admin/:id' , to:'users#cancel_admin_rights'
   get '/users/:id' , to:'users#show'
-  get '/news/:category', to:'articles#index'
+  get '/news/:category', to:'articles#index', as: 'articles_by_category'
   root :to => "articles#index", :category => 'all'
   post '/preferences' , to: 'preferences#create', as: 'preference_create'
   resources :articles, only: [:new, :create, :show, :edit, :update, :destroy] do

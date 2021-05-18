@@ -1,0 +1,16 @@
+<div class="col-md-4 mb-2">  
+  <div class="card border-0 ">   
+    <img class="card-img-top" src="<%= rails_blob_url(article.image) %>" height="200">
+    <div class="card-body">
+      <div class="news-tidings__clamping">
+        <div class="news-tidings__subtitle">
+          <h5 class="card-title"><a><b><%= link_to "#{article.title}", article_path(article.id) %></b></a></h5>
+        </div>
+        <div class="news-tidings__speech news-helpers_hide_mobile-small">
+          <div class="card-text"><%= simple_format(article.text.truncate(270)) %></div>
+        </div>
+      </div>
+      <%= render partial: "comment_and_date",object: article, as: 'article'%>
+    </div>
+  </div>
+</div>

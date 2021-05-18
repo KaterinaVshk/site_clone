@@ -23,7 +23,10 @@
                     </div>
                     <div class="news-header__part news-header__part_2">
                     <div class="news-header__author news-helpers_hide_mobile">
-                      Автор: <%= @article.admin_id %>
+                    <% author = User.find(@article.admin_id) %>
+                    <% unless author.nil? %>
+                      Автор: <%= author.first_name%>  <%= author.last_name %>
+                    <% end %>
                     </div>
                     </div>
                   </div>
@@ -77,9 +80,9 @@
                         <%= f.hidden_field :article_id,  value: @article.id %>
                         <%= f.text_area :content,class: "form-control #{'is-invalid' if invalid}" , placeholder: "Ваше мнение, #{@user.id}?" %><br/>
                           
-                    <% if alert%>
+                    <% if alert == 'Комментарий не может быть пустым'%>
                       <div class="invalid-feedback d-block">
-                        <p><big> <%=  alert %></big></p> 
+                        <p><big> <%= alert %></big></p> 
                       </div>
                     <%end%>
                         <div class="col-md-4">
